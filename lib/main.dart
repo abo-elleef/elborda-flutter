@@ -9,7 +9,12 @@ import 'details_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MaterialApp(
+    home: MyApp() ,
+    ),
+  );
+}
 
 class MyApp extends StatefulWidget {
   @override
