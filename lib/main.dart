@@ -64,8 +64,6 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print('before fetch');
-    print('after fetch');
     return MaterialApp(
       title: 'Welcome to Flutter',
       home: Scaffold(
