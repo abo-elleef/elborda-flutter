@@ -10,8 +10,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 void main() {
-  runApp(MaterialApp(
-    home: MyApp() ,
+  runApp(
+    MaterialApp(
+      title: 'Elborda Test Title',
+      theme: ThemeData(primaryColor: Colors.green, fontFamily: "uthmanic"),
+      home: MyApp(),
     ),
   );
 }
@@ -32,13 +35,14 @@ class MyAppState extends State<MyApp> {
   }
 
   List<dynamic> poems = [
-    Poem(id: 1, name: 'first poem', desc: 'Ahmed'),
-    Poem(id: 1, name: 'first poem 2 ', desc: 'Ahmed 2')
+    Poem(id: 52, name: 'first poem', desc: 'Ahmed'),
+    Poem(id: 24, name: 'first poem 2 ', desc: 'Ahmed 2')
   ];
 
   Future<void> getPoems() async {
     final String url = 'http://www.elborda.com?format=json';
     var response = await http.get(url);
+    print(response);
     print(convert.jsonDecode(response.body));
     // if (response.statusCode == 200) {
     var items = convert.jsonDecode(response.body)['poems'].map((hash) {
@@ -56,9 +60,9 @@ class MyAppState extends State<MyApp> {
     // }
   }
 
-  void openDetailsPage(BuildContext ctx){
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_){
-      return Details();
+  void openDetailsPage(BuildContext ctx, String id) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return Details(id);
     }));
   }
 
@@ -66,43 +70,53 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
+      theme: ThemeData(primaryColor: Colors.green, fontFamily: "uthmanic"),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Welcome to Flutter'),
+            title: Text('Welcome to Flutter 2'),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Container(
-                    width: double.infinity,
-                    child: Card(
-                      child: Text('this is the main header'),
-                    )),
-                Column(
-                  children: poems.map((poem) {
-                    return Row(
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        // Text('icon'),
-                        GestureDetector(
-                            onTap: () {
-                              openDetailsPage(context);
-                            },
-                            child: Container(
-                                width: 100,
-                                color: Color.fromRGBO(255, 0, 0, 1),
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 18, horizontal: 10),
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 18, horizontal: 10),
-                                child: Text(poem.name))),
-                      ],
-                    );
-                  }).toList(),
-                )
-              ],
+          body: DecoratedBox(
+            position: DecorationPosition.background,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              image: DecorationImage(
+                  image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Container(
+                      width: double.infinity,
+                      child: Card(
+                        child: Text('this is the main header'),
+                      )),
+                  Column(
+                    children: poems.map((poem) {
+                      return Row(
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          // Text('icon'),
+                          GestureDetector(
+                              onTap: () {
+                                openDetailsPage(context, poem.id.toString());
+                              },
+                              child: Container(
+                                  width: 300,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 10),
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 10, horizontal: 10),
+                                  child: Text(poem.name,
+                                      style: TextStyle(fontSize: 28)))),
+                        ],
+                      );
+                    }).toList(),
+                  )
+                ],
+              ),
             ),
           )),
     );
