@@ -18,11 +18,14 @@ class DetailsState extends State<Details> {
   List<dynamic> lines = [
     {
       "id": 961,
-      "body": ["أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ,  حَتَّى الى الْغِيَرَ تحوجونى"]
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
     },
     {
       "id": 962,
-      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ,  يا سَادَةُ الحى تداركونى"]
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
     }
   ];
   @override
@@ -35,7 +38,6 @@ class DetailsState extends State<Details> {
 
   Future<void> getPoem() async {
     final String url = 'http://www.elborda.com/poems/${id}?format=json';
-    print(url);
     var response = await http.get(url);
     print(convert.jsonDecode(response.body));
     // if (response.statusCode == 200) {
@@ -79,12 +81,22 @@ class DetailsState extends State<Details> {
                 children: lines.map((line) {
                   print(line);
                   return Container(
-                      width: 350,
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width - 40,
                       padding:
                           EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      child: Text(line['body'].join('\n')));
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          border: Border.all(
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                            width: 2,
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      child: Text(line['body'].join('\n'),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Color.fromRGBO(0, 100, 0, 1))));
                 }).toList(),
               )
             ],

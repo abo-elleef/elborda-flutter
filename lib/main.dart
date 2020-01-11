@@ -13,7 +13,7 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Elborda Test Title',
-      theme: ThemeData(primaryColor: Colors.green, fontFamily: "uthmanic"),
+      theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
       home: MyApp(),
     ),
   );
@@ -35,8 +35,8 @@ class MyAppState extends State<MyApp> {
   }
 
   List<dynamic> poems = [
-    Poem(id: 52, name: 'first poem', desc: 'Ahmed'),
-    Poem(id: 24, name: 'first poem 2 ', desc: 'Ahmed 2')
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2')
   ];
 
   Future<void> getPoems() async {
@@ -70,10 +70,10 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
-      theme: ThemeData(primaryColor: Colors.green, fontFamily: "uthmanic"),
+      theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Welcome to Flutter 2'),
+            title: Text('المدائح '),
           ),
           body: DecoratedBox(
             position: DecorationPosition.background,
@@ -87,11 +87,11 @@ class MyAppState extends State<MyApp> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                      width: double.infinity,
-                      child: Card(
-                        child: Text('this is the main header'),
-                      )),
+                  // Container(
+                  //     width: double.infinity,
+                  //     child: Card(
+                  //       child: Text('this is the main header'),
+                  //     )),
                   Column(
                     children: poems.map((poem) {
                       return Row(
@@ -103,14 +103,24 @@ class MyAppState extends State<MyApp> {
                                 openDetailsPage(context, poem.id.toString());
                               },
                               child: Container(
-                                  width: 300,
-                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  alignment: Alignment.topRight,
+                                  width: MediaQuery.of(context).size.width - 40,
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(255, 255, 255, 1),
+                                      border: Border.all(
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                        width: 2,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15))),
                                   padding: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 10),
+                                      vertical: 8, horizontal: 16),
                                   margin: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 10),
+                                      vertical: 10, horizontal: 20),
                                   child: Text(poem.name,
-                                      style: TextStyle(fontSize: 28)))),
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      )))),
                         ],
                       );
                     }).toList(),
