@@ -36,7 +36,23 @@ class MyAppState extends State<MyApp> {
 
   List<dynamic> poems = [
     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2')
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
+    Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
+    Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
   ];
 
   Future<void> getPoems() async {
@@ -78,7 +94,6 @@ class MyAppState extends State<MyApp> {
           body: DecoratedBox(
             position: DecorationPosition.background,
             decoration: BoxDecoration(
-              color: Colors.red,
               image: DecorationImage(
                   image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
             ),
@@ -92,38 +107,43 @@ class MyAppState extends State<MyApp> {
                   //     child: Card(
                   //       child: Text('this is the main header'),
                   //     )),
-                  Column(
-                    children: poems.map((poem) {
-                      return Row(
-                        textDirection: TextDirection.rtl,
-                        children: <Widget>[
-                          // Text('icon'),
-                          GestureDetector(
-                              onTap: () {
-                                openDetailsPage(context, poem.id.toString());
-                              },
-                              child: Container(
-                                  alignment: Alignment.topRight,
-                                  width: MediaQuery.of(context).size.width - 40,
-                                  decoration: BoxDecoration(
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                      border: Border.all(
+                  Container(
+                    padding: EdgeInsets.only(bottom: 70),
+                    child: Column(
+                      children: poems.map((poem) {
+                        return Row(
+                          textDirection: TextDirection.rtl,
+                          children: <Widget>[
+                            // Text('icon'),
+                            GestureDetector(
+                                onTap: () {
+                                  openDetailsPage(context, poem.id.toString());
+                                },
+                                child: Container(
+                                    alignment: Alignment.topRight,
+                                    width:
+                                        MediaQuery.of(context).size.width - 40,
+                                    decoration: BoxDecoration(
                                         color: Color.fromRGBO(255, 255, 255, 1),
-                                        width: 2,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(15))),
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 8, horizontal: 16),
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 20),
-                                  child: Text(poem.name,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                      )))),
-                        ],
-                      );
-                    }).toList(),
+                                        border: Border.all(
+                                          color:
+                                              Color.fromRGBO(255, 255, 255, 1),
+                                          width: 2,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15))),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 16),
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 20),
+                                    child: Text(poem.name,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                        )))),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   )
                 ],
               ),

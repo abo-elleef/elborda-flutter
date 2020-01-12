@@ -8,13 +8,14 @@ class Details extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return DetailsState(id);
+    return DetailsState(id, '...');
   }
 }
 
 class DetailsState extends State<Details> {
   final String id;
-  DetailsState(this.id);
+  String pageTitle;
+  DetailsState(this.id, this.pageTitle);
   List<dynamic> lines = [
     {
       "id": 961,
@@ -26,7 +27,73 @@ class DetailsState extends State<Details> {
     {
       "id": 962,
       "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    }
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
+    {
+      "id": 961,
+      "body": [
+        "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
+        " حَتَّى الى الْغِيَرَ تحوجونى"
+      ]
+    },
+    {
+      "id": 962,
+      "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
+    },
   ];
   @override
   void initState() {
@@ -47,11 +114,13 @@ class DetailsState extends State<Details> {
     List items = chapters.map((chapter) {
       return chapter['lines'];
     }).toList()[0];
+    String pageTitle2 = convert.jsonDecode(response.body)['poem']['name'];
     print('----------');
     // var poemOfDay = DetailPoem.fromJson(convert.jsonDecode(response.body)['poem_of_day']);
     print(items);
     setState(() {
       lines = items;
+      pageTitle = pageTitle2;
     });
 
     // } else {
@@ -63,7 +132,7 @@ class DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('details page'),
+        title: Text(this.pageTitle),
       ),
       body: DecoratedBox(
         position: DecorationPosition.background,
@@ -72,34 +141,30 @@ class DetailsState extends State<Details> {
               image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Column(
-                textDirection: TextDirection.rtl,
-                children: lines.map((line) {
-                  print(line);
-                  return Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width - 40,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      decoration: BoxDecoration(
+          child: Container(
+                                padding: EdgeInsets.only(bottom: 70),
+
+                      child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: lines.map((line) {
+                return Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width - 40,
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        border: Border.all(
                           color: Color.fromRGBO(255, 255, 255, 1),
-                          border: Border.all(
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Text(line['body'].join('\n'),
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Color.fromRGBO(0, 100, 0, 1))));
-                }).toList(),
-              )
-            ],
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: Text(line['body'].join('\n'),
+                        style: TextStyle(
+                            fontSize: 20, color: Color.fromRGBO(0, 100, 0, 1))));
+              }).toList(),
+            ),
           ),
         ),
       ),
