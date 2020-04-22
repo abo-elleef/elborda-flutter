@@ -225,34 +225,34 @@ class DetailsState extends State<Details> {
       );
     }).toList();
     body.addAll(items);
-    body.add(Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        RaisedButton(
-          child: Text(
-            "السابق",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-            ),
-          ),
-          onPressed: openPrevious,
-          color: Color(0xff4caf50),
-        ),
-        RaisedButton(
-          child: Text(
-            "التالي",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-            ),
-          ),
-          onPressed: openNext,
-          color: Color(0xff4caf50),
-        ),
-      ],
-    ));
+//    body.add(Row(
+//      crossAxisAlignment: CrossAxisAlignment.center,
+//      mainAxisAlignment: MainAxisAlignment.center,
+//      children: [
+//        RaisedButton(
+//          child: Text(
+//            "السابق",
+//            style: TextStyle(
+//              fontSize: 20,
+//              color: Colors.white,
+//            ),
+//          ),
+//          onPressed: openPrevious,
+//          color: Color(0xff4caf50),
+//        ),
+//        RaisedButton(
+//          child: Text(
+//            "التالي",
+//            style: TextStyle(
+//              fontSize: 20,
+//              color: Colors.white,
+//            ),
+//          ),
+//          onPressed: openNext,
+//          color: Color(0xff4caf50),
+//        ),
+//      ],
+//    ));
 
     return body;
   }
