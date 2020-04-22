@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class Details extends StatefulWidget {
-  final String id;
+  var id;
   Details(this.id);
   @override
   State<StatefulWidget> createState() {
@@ -13,11 +13,11 @@ class Details extends StatefulWidget {
 }
 
 class DetailsState extends State<Details> {
-  String id;
+  var id;
   String pageTitle;
   DetailsState(this.id, this.pageTitle);
-  // List<dynamic> lines = [];
-  List<dynamic> lines = [
+   List<dynamic> lines = [];
+//  List<dynamic> lines = [
     // {
     //   "id": 961,
     //   "body": [
@@ -95,7 +95,7 @@ class DetailsState extends State<Details> {
     //   "id": 962,
     //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
     // },
-  ];
+//  ];
   @override
   void initState() {
     // print('before init state in details page ');
@@ -104,25 +104,24 @@ class DetailsState extends State<Details> {
   }
 
   Future<void> getPoem() async {
-    final String url = 'http://www.elborda.com/poems/${id}?format=json';
-    var response = await http.get(url);
+//    print(id);
+//    final String url = 'http://www.elborda.com/poems/${id}?format=json';
+//    var response = await http.get(url);
     // print(convert.jsonDecode(response.body));
     // if (response.statusCode == 200) {
 
-    List chapters =
-        convert.jsonDecode(response.body)['poem']['chapters'] as List;
+    List chapters = id['chapters'] as List;
     List items = chapters
         .map((chapter) {
           return chapter['lines'];
         })
         .expand((pair) => pair)
         .toList();
-    String pageTitle2 = convert.jsonDecode(response.body)['poem']['name'];
-    int id2 = convert.jsonDecode(response.body)['poem']['id'];
+
     setState(() {
       lines = items;
-      pageTitle = pageTitle2;
-      id = id2.toString();
+      pageTitle = id["name"];
+      id = id["id"];
     });
 
     // } else {
