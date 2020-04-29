@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "430556994766",
+    "firebase_url": "https://elborda-aboelleef.firebaseio.com",
+    "project_id": "elborda-aboelleef",
+    "storage_bucket": "elborda-aboelleef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430556994766:android:f795245eee212ff585849f",
+        "android_client_info": {
+          "package_name": "com.leef.elborda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430556994766-i22ucmnd96bm5i89bltg75menf07e0nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgrN5SZfWB2S0B-ffn3yq99UZtxa3H5RU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430556994766-i22ucmnd96bm5i89bltg75menf07e0nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
