@@ -5,11 +5,12 @@ import 'dart:convert' as convert;
 class Details extends StatefulWidget {
   var poem;
   String id;
-  Details(this.poem);
+  List items;
+  Details(this.poem, this.items);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return DetailsState(poem, '...');
+    return DetailsState(poem, '...', items);
   }
 }
 
@@ -17,7 +18,8 @@ class DetailsState extends State<Details> {
   var poem;
   String pageTitle;
   String id ;
-  DetailsState(this.poem, this.pageTitle);
+  List items;
+  DetailsState(this.poem, this.pageTitle, this.items);
    List<dynamic> lines = [];
 //  List<dynamic> lines = [
     // {
@@ -112,13 +114,13 @@ class DetailsState extends State<Details> {
     // print(convert.jsonDecode(response.body));
     // if (response.statusCode == 200) {
 
-    List chapters = poem['chapters'] as List;
-    List items = chapters
-        .map((chapter) {
-          return chapter['lines'];
-        })
-        .expand((pair) => pair)
-        .toList();
+//    List chapters = poem['chapters'] as List;
+//    List items = chapters
+//        .map((chapter) {
+//          return chapter['lines'];
+//        })
+//        .expand((pair) => pair)
+//        .toList();
 
     setState(() {
       lines = items;

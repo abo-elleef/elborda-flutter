@@ -21112,27 +21112,6 @@ class MyAppState extends State<MyApp> {
 
   List<dynamic> poems = [];
 
-//  List<dynamic> poems = [
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//     Poem(id: 52, name: 'بردة المديح', desc: 'Ahmed'),
-//     Poem(id: 24, name: 'نهج البردة  ', desc: 'Ahmed 2'),
-//  ];
-
   Future<void> getPoems() async {
     final String url = 'http://www.elborda.com?format=json';
     var response = await http.get(url);
@@ -21143,10 +21122,6 @@ class MyAppState extends State<MyApp> {
     setState(() {
       poems = items;
     });
-
-    // } else {
-    //   print('Request failed with status: ${response.statusCode}.');
-    // }
   }
 
   void openDetailsPage(BuildContext ctx, String id) {
@@ -21156,7 +21131,14 @@ class MyAppState extends State<MyApp> {
       if (chapters.length > 1) {
         return ChapterView(poem);
       } else {
-        return Details(poem);
+        List chapters = poem['chapters'] as List;
+        List lines = chapters
+            .map((chapter) {
+          return chapter['lines'];
+        })
+            .expand((pair) => pair)
+            .toList();
+        return Details(poem, lines);
       }
     }));
   }

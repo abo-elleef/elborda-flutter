@@ -16,9 +16,9 @@ class _ChapterViewState extends State<ChapterView> {
   var poem;
   List<Widget> chapterNames= [];
 
-  void openDetailsPage(BuildContext ctx, String id) {
+  void openDetailsPage(BuildContext ctx, List lines) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return Details(poem);
+      return Details(poem, lines);
     }));
   }
 
@@ -30,7 +30,7 @@ class _ChapterViewState extends State<ChapterView> {
       chapterNames = chapters.map((chapter){
         return GestureDetector(
               onTap: () {
-                openDetailsPage(context, chapter["id"]);
+                openDetailsPage(context, chapter["lines"]);
               },
               child: TitleCard(title: chapter["name"]));
 
