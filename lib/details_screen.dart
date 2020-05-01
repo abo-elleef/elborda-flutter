@@ -3,19 +3,21 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class Details extends StatefulWidget {
-  var id;
-  Details(this.id);
+  var poem;
+  String id;
+  Details(this.poem);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return DetailsState(id, '...');
+    return DetailsState(poem, '...');
   }
 }
 
 class DetailsState extends State<Details> {
-  var id;
+  var poem;
   String pageTitle;
-  DetailsState(this.id, this.pageTitle);
+  String id ;
+  DetailsState(this.poem, this.pageTitle);
    List<dynamic> lines = [];
 //  List<dynamic> lines = [
     // {
@@ -110,7 +112,7 @@ class DetailsState extends State<Details> {
     // print(convert.jsonDecode(response.body));
     // if (response.statusCode == 200) {
 
-    List chapters = id['chapters'] as List;
+    List chapters = poem['chapters'] as List;
     List items = chapters
         .map((chapter) {
           return chapter['lines'];
@@ -120,8 +122,8 @@ class DetailsState extends State<Details> {
 
     setState(() {
       lines = items;
-      pageTitle = id["name"];
-      id = id["id"];
+      pageTitle = poem["name"];
+      id = poem["id"];
     });
 
     // } else {

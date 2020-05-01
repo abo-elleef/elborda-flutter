@@ -2,10 +2,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'package:elborda/title_card.dart';
 import 'package:flutter/material.dart';
 import './models/poem.dart';
 import './models/DetailPoem.dart';
 import 'details_screen.dart';
+import 'chapter_view.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21150,7 +21152,12 @@ class MyAppState extends State<MyApp> {
   void openDetailsPage(BuildContext ctx, String id) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       var poem = poemsHash[id];
-      return Details(poem);
+      List chapters = poem['chapters'] as List;
+      if (chapters.length > 1) {
+        return ChapterView(poem);
+      } else {
+        return Details(poem);
+      }
     }));
   }
 
@@ -21181,50 +21188,15 @@ class MyAppState extends State<MyApp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    // Container(
-                    //     width: double.infinity,
-                    //     child: Card(
-                    //       child: Text('this is the main header'),
-                    //     )),
                     Container(
                       padding: EdgeInsets.only(bottom: 70),
                       child: Column(
                         children: poems.map((poem) {
                           return GestureDetector(
-                                  onTap: () {
-                                    openDetailsPage(
-                                        context, poem.id.toString());
-                                  },
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Color.fromRGBO(
-                                              255, 255, 255, 0.8),
-                                          border: Border.all(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0.3),
-                                            width: 2,
-                                          ),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(15))),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 8, horizontal: 0),
-                                      margin: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 20),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Container(
-                                              margin: EdgeInsets.symmetric(vertical: 0, horizontal: 16.0),
-                                              child: Image.asset(
-                                                  "assets/book.png",
-                                                  width: 16)),
-                                          Text(poem.name,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Color.fromRGBO(
-                                                      34, 34, 34, 1))),
-                                        ],
-                                      )));
-
+                              onTap: () {
+                                openDetailsPage(context, poem.id.toString());
+                              },
+                              child: TitleCard(title: poem.name));
                         }).toList(),
                       ),
                     )
