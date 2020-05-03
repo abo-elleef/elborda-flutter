@@ -3124,7 +3124,7 @@ class MyAppState extends State<MyApp> {
       "chapters": [
         {
           "id": "29",
-          "name": "القصيدة كاملةِ",
+          "name": "المائة بيت الاولي",
           "lines": [
             {
               "id": "413",
@@ -3830,7 +3830,7 @@ class MyAppState extends State<MyApp> {
         },
         {
           "id": "30",
-          "name": "القصيدة كاملةِ",
+          "name": "المائة بيت الثانية",
           "lines": [
             {
               "id": "513",
@@ -4536,7 +4536,7 @@ class MyAppState extends State<MyApp> {
         },
         {
           "id": "31",
-          "name": "القصيدة كاملةِ",
+          "name": "المائة بيت الثالثة",
           "lines": [
             {
               "id": "613",
@@ -5242,7 +5242,7 @@ class MyAppState extends State<MyApp> {
         },
         {
           "id": "32",
-          "name": "القصيدة كاملةِ",
+          "name": "المائة بيت الرايعة",
           "lines": [
             {
               "id": "713",
@@ -5948,7 +5948,7 @@ class MyAppState extends State<MyApp> {
         },
         {
           "id": "33",
-          "name": "القصيدة كاملةِ",
+          "name": "الخاتمة",
           "lines": [
             {
               "id": "813",
@@ -8107,7 +8107,7 @@ class MyAppState extends State<MyApp> {
     },
     "19": {
       "id": "19",
-      "name": "يا كامل الذات",
+      "name": "يا كامل الذات\n",
       "author": "",
       "desc":
           "يا كَامِلُ الذات يا جَمِيلِ الصِّفَاتِ  ..   عَلَيكَ الصَّلَاَةَ وَعَلَيْكَ السّلَامَ  ..   حَبَّ طه الْعَدْنانَ قَدْ سُكِنَ الْجِنَّانُ  ..   فاسبحوافى الْجِنَّانَ وَاُطْلُبُوا الْمَغْفِرَةَ  ..   بغيتى وَالطِّلَبَ لِزَعيمِ الْعُرْبِ  ..   فى حشاى الْحَرَّابَ هَائِمًا فى الفلاه",
@@ -21134,8 +21134,8 @@ class MyAppState extends State<MyApp> {
         List chapters = poem['chapters'] as List;
         List lines = chapters
             .map((chapter) {
-          return chapter['lines'];
-        })
+              return chapter['lines'];
+            })
             .expand((pair) => pair)
             .toList();
         return Details(poem, lines);
