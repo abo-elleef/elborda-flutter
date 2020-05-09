@@ -10,7 +10,8 @@ class TitleCard extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
             color: Color.fromRGBO(255, 255, 255, 0.8),
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+            borderRadius: BorderRadius.all(Radius.circular(15))
+        ),
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 0),
         margin: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
         child: Row(

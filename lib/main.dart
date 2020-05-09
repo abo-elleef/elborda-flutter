@@ -21142,6 +21142,15 @@ class MyAppState extends State<MyApp> {
       }
     }));
   }
+  void filterPoems(search){
+    var items = poemsHash.values.toList().map((hash) {
+      return Poem.fromJson(hash);
+    }).toList();
+    items.removeWhere((poem) { return !poem.name.contains(search);});
+    setState(() {
+      poems = items;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21170,6 +21179,17 @@ class MyAppState extends State<MyApp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      child: TextField(
+                        onChanged: (search){
+                          filterPoems(search);
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'ابحث باسم القصيدة',
+                        ),
+                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.only(bottom: 70),
                       child: Column(
