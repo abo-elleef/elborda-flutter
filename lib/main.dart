@@ -13,20 +13,7 @@ import 'dart:convert' as convert;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
-      ],
-      title: 'Elborda Test Title',
-      theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
-      home: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -21154,7 +21141,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    Widget home = MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -21207,6 +21194,17 @@ class MyAppState extends State<MyApp> {
               ),
             ),
           )),
+    );
+    return Stack(
+      textDirection: TextDirection.rtl,
+      children: <Widget>[
+        Container(color: Colors.yellow),
+        Transform(
+          transform: Matrix4.identity()..scale(0.5),
+          child: home,
+          alignment: Alignment.centerLeft,
+        )
+      ],
     );
   }
 }
