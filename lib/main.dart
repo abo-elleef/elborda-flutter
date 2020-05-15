@@ -24,11 +24,16 @@ class MyApp extends StatefulWidget {
   }
 }
 
-class MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp>  with SingleTickerProviderStateMixin {
+  AnimationController animation;
   @override
   void initState() {
     getPoems();
     super.initState();
+    animation = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 250)
+    );
   }
 
   var poemsHash = {
@@ -21138,7 +21143,9 @@ class MyAppState extends State<MyApp> {
       poems = items;
     });
   }
-
+  void toggle () {
+    animation.isDismissed ? animation.forward() : animation.reverse();
+  }
   @override
   Widget build(BuildContext context) {
     Widget home = MaterialApp(
@@ -21153,6 +21160,12 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
       home: Scaffold(
           appBar: AppBar(
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: (){toggle();},
+              )
+            ],
             title: Text('المدائح '),
           ),
           body: DecoratedBox(
@@ -21185,7 +21198,8 @@ class MyAppState extends State<MyApp> {
                               onTap: () {
                                 openDetailsPage(context, poem.id.toString());
                               },
-                              child: TitleCard(title: poem.name));
+                              child: TitleCard(title: poem.name),
+                          );
                         }).toList(),
                       ),
                     )
@@ -21195,16 +21209,27 @@ class MyAppState extends State<MyApp> {
             ),
           )),
     );
-    return Stack(
-      textDirection: TextDirection.rtl,
-      children: <Widget>[
-        Container(color: Colors.yellow),
-        Transform(
-          transform: Matrix4.identity()..scale(0.5),
-          child: home,
-          alignment: Alignment.centerLeft,
-        )
-      ],
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, _){
+        double scale = 1 - (animation.value * 0.4);
+        return Stack(
+          textDirection: TextDirection.rtl,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                toggle();
+              },
+              child: Container(color: Colors.yellow),
+            ),
+            Transform(
+              transform: Matrix4.identity()..scale(scale),
+              child: home,
+              alignment: Alignment.centerLeft,
+            )
+          ],
+        );
+      }
     );
   }
 }
