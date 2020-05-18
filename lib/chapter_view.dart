@@ -1,4 +1,4 @@
-import 'package:elborda/title_card.dart';
+import 'package:elborda/chapter_card.dart';
 import 'package:flutter/material.dart';
 import 'details_screen.dart';
 import 'dart:convert' as convert;
@@ -33,7 +33,7 @@ class _ChapterViewState extends State<ChapterView> {
               onTap: () {
                 openDetailsPage(context, chapter["lines"], chapter["name"]);
               },
-              child: TitleCard(title: chapter["name"]));
+              child: ChapterCard(title: chapter["name"]));
 
       }).toList();
     });

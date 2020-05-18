@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:elborda/title_card.dart';
+import 'package:elborda/poem_card.dart';
 import 'package:flutter/material.dart';
 import './models/poem.dart';
 import './models/DetailPoem.dart';
@@ -21205,7 +21205,7 @@ class MyAppState extends State<MyApp> {
                               onTap: () {
                                 openDetailsPage(context, poem.id.toString());
                               },
-                              child: TitleCard(title: poem.name));
+                              child: PoemCard(title: poem.name, desc: poem.desc, author: poem.author,));
                         }).toList(),
                       ),
                     )
