@@ -21180,13 +21180,20 @@ class MyAppState extends State<MyApp> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color.fromRGBO(255, 255, 255, 0.8),
+                      ),
                       child: TextField(
                         onChanged: (search){
                           filterPoems(search);
                         },
                         decoration: InputDecoration(
                           hintText: 'ابحث باسم القصيدة',
+                          icon: Icon(Icons.search),
+                          border: InputBorder.none
                         ),
                       ),
                     ),
