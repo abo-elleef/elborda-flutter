@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TitleCard extends StatelessWidget {
-  TitleCard({@required this.title});
+class ChapterCard extends StatelessWidget {
+  ChapterCard({@required this.title});
 
   final String title;
 
