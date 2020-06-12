@@ -12,7 +12,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:admob_flutter/admob_flutter.dart';
+
+
 void main() {
+  Admob.initialize("ca-app-pub-2772630944180636~1708790676");
   runApp(
     MaterialApp(
       localizationsDelegates: [
@@ -38,10 +42,15 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  AdmobBannerSize bannerSize;
+
   @override
   void initState() {
     getPoems();
     super.initState();
+    bannerSize = AdmobBannerSize.BANNER;
+
   }
 
   var poemsHash = {
@@ -21196,6 +21205,15 @@ class MyAppState extends State<MyApp> {
                           border: InputBorder.none
                         ),
                       ),
+                    ),
+                    AdmobBanner(
+                      adUnitId: "ca-app-pub-2772630944180636/3185523871",
+                      adSize: bannerSize,
+                      listener:
+                          (AdmobAdEvent event, Map<String, dynamic> args) {
+                        print("loaded");
+//                        handleEvent(event, args, 'Banner');
+                      },
                     ),
                     Container(
                       padding: EdgeInsets.only(bottom: 70),
