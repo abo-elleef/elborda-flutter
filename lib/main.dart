@@ -13,10 +13,12 @@ import 'dart:convert' as convert;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:admob_flutter/admob_flutter.dart';
+import 'dart:io' show Platform;
+
 
 
 void main() {
-  Admob.initialize("ca-app-pub-2772630944180636~1708790676");
+  Admob.initialize( Platform.isIOS ? "ca-app-pub-2772630944180636~4608953642" : "ca-app-pub-2772630944180636~1708790676");
   runApp(
     MaterialApp(
       localizationsDelegates: [
@@ -21161,6 +21163,7 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21207,7 +21210,7 @@ class MyAppState extends State<MyApp> {
                       ),
                     ),
                     AdmobBanner(
-                      adUnitId: "ca-app-pub-2772630944180636/3185523871",
+                      adUnitId:  Platform.isIOS ? "ca-app-pub-2772630944180636/8356626963" : "ca-app-pub-2772630944180636/3185523871",
                       adSize: bannerSize,
                       listener:
                           (AdmobAdEvent event, Map<String, dynamic> args) {
