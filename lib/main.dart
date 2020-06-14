@@ -51,7 +51,7 @@ class MyAppState extends State<MyApp> {
   void initState() {
     getPoems();
     super.initState();
-    bannerSize = AdmobBannerSize.BANNER;
+    bannerSize = AdmobBannerSize.FULL_BANNER;
 
   }
 

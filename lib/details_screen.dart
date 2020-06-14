@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:admob_flutter/admob_flutter.dart';
+import 'dart:io' show Platform;
+
 
 class Details extends StatefulWidget {
   var poem;
@@ -19,91 +22,14 @@ class DetailsState extends State<Details> {
   String pageTitle;
   String id ;
   List items;
+  AdmobBannerSize bannerSize;
   DetailsState(this.poem, this.pageTitle, this.items);
    List<dynamic> lines = [];
-//  List<dynamic> lines = [
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-    // {
-    //   "id": 961,
-    //   "body": [
-    //     "أَمَّا كَفَاكُمْ أَنَّى مُحِبّ ",
-    //     " حَتَّى الى الْغِيَرَ تحوجونى"
-    //   ]
-    // },
-    // {
-    //   "id": 962,
-    //   "body": ["فَصَرَّتْ فى حَبَّكُمْ أَنَادَى ", " يا سَادَةُ الحى تداركونى"]
-    // },
-//  ];
   @override
   void initState() {
     // print('before init state in details page ');
     getPoem();
+    bannerSize = AdmobBannerSize.FULL_BANNER;
     super.initState();
   }
 
@@ -186,7 +112,15 @@ class DetailsState extends State<Details> {
 
   List<Widget> generateBody(List<dynamic> lines) {
     List<Widget> body = [];
-
+    body.add(AdmobBanner(
+      adUnitId:  Platform.isIOS ? "ca-app-pub-2772630944180636/8356626963" : "ca-app-pub-2772630944180636/3185523871",
+      adSize: bannerSize,
+      listener:
+          (AdmobAdEvent event, Map<String, dynamic> args) {
+        print("loaded");
+//                        handleEvent(event, args, 'Banner');
+      },
+    ));
     List<Container> items = lines.asMap().entries.map((pair) {
       // pair.key to get the index of each item
       return Container(
