@@ -19,7 +19,7 @@ class _ChapterViewState extends State<ChapterView> {
   void openDetailsPage(BuildContext ctx, List lines, String title) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       poem["name"] = title;
-      return Details(poem, lines);
+      return Details(poem, lines, []);
     }));
   }
 

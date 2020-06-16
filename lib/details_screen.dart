@@ -3,17 +3,19 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:admob_flutter/admob_flutter.dart';
 import 'dart:io' show Platform;
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 
 class Details extends StatefulWidget {
   var poem;
   String id;
   List items;
-  Details(this.poem, this.items);
+  List links;
+  Details(this.poem, this.items, this.links);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return DetailsState(poem, '...', items);
+    return DetailsState(poem, '...', items, links);
   }
 }
 
@@ -22,15 +24,29 @@ class DetailsState extends State<Details> {
   String pageTitle;
   String id ;
   List items;
+  YoutubePlayerController _controller;
   AdmobBannerSize bannerSize;
-  DetailsState(this.poem, this.pageTitle, this.items);
+  String ids = '';
+  DetailsState(this.poem, this.pageTitle, this.items, this.links);
    List<dynamic> lines = [];
+  List<dynamic> links = [];
   @override
   void initState() {
-    // print('before init state in details page ');
     getPoem();
-    bannerSize = AdmobBannerSize.FULL_BANNER;
+    bannerSize = AdmobBannerSize.BANNER;
     super.initState();
+    print(links);
+    if (!(links.isEmpty || links.first["link"].isEmpty || links.first['source'] != "you_tube")){
+      ids = links.first["link"].split("/embed/").last;
+    }
+    print(ids);
+    _controller = YoutubePlayerController(
+      initialVideoId: ids,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
   }
 
   Future<void> getPoem() async {
@@ -41,85 +57,16 @@ class DetailsState extends State<Details> {
     });
   }
 
-//  Future<void> getNextPoem() async {
-//    final String url = 'http://www.elborda.com/poems/${id}/next?format=json';
-//    var response = await http.get(url);
-//    // print(convert.jsonDecode(response.body));
-//    // if (response.statusCode == 200) {
-//
-//    List chapters =
-//        convert.jsonDecode(response.body)['poem']['chapters'] as List;
-//    List items = chapters
-//        .map((chapter) {
-//          return chapter['lines'];
-//        })
-//        .expand((pair) => pair)
-//        .toList();
-//    String pageTitle2 = convert.jsonDecode(response.body)['poem']['name'];
-//    int id2 = convert.jsonDecode(response.body)['poem']['id'];
-//    // print('----------');
-//    // var poemOfDay = DetailPoem.fromJson(convert.jsonDecode(response.body)['poem_of_day']);
-//
-//    setState(() {
-//      lines = items;
-//      pageTitle = pageTitle2;
-//      id = id2.toString();
-//    });
-//
-//    // } else {
-//    //   print('Request failed with status: ${response.statusCode}.');
-//    // }
-//  }
-
-//  Future<void> getPreviousPoem() async {
-//    final String url =
-//        'http://www.elborda.com/poems/${id}/previous?format=json';
-//    var response = await http.get(url);
-//    // print(convert.jsonDecode(response.body));
-//    // if (response.statusCode == 200) {
-//
-//    List chapters =
-//        convert.jsonDecode(response.body)['poem']['chapters'] as List;
-//    List items = chapters
-//        .map((chapter) {
-//          return chapter['lines'];
-//        })
-//        .expand((pair) => pair)
-//        .toList();
-//    String pageTitle2 = convert.jsonDecode(response.body)['poem']['name'];
-//    int id2 = convert.jsonDecode(response.body)['poem']['id'];
-//    // print('----------');
-//    // var poemOfDay = DetailPoem.fromJson(convert.jsonDecode(response.body)['poem_of_day']);
-//    // print(items);
-//    setState(() {
-//      lines = items;
-//      pageTitle = pageTitle2;
-//      id = id2.toString();
-//    });
-//
-//    // } else {
-//    //   print('Request failed with status: ${response.statusCode}.');
-//    // }
-//  }
-
-//  void openNext() {
-//    getNextPoem();
-//  }
-//
-//  void openPrevious() {
-//    getPreviousPoem();
-//  }
-
   List<Widget> generateBody(List<dynamic> lines) {
     List<Widget> body = [];
+    if (!this.ids.isEmpty){
+      body.add(YoutubePlayer(controller: _controller));
+    }
+
+    body.add(SizedBox(height: 15,));
     body.add(AdmobBanner(
       adUnitId:  Platform.isIOS ? "ca-app-pub-2772630944180636/8356626963" : "ca-app-pub-2772630944180636/3185523871",
-      adSize: bannerSize,
-      listener:
-          (AdmobAdEvent event, Map<String, dynamic> args) {
-        print("loaded");
-//                        handleEvent(event, args, 'Banner');
-      },
+      adSize: bannerSize
     ));
     List<Container> items = lines.asMap().entries.map((pair) {
       // pair.key to get the index of each item
@@ -144,35 +91,6 @@ class DetailsState extends State<Details> {
       );
     }).toList();
     body.addAll(items);
-//    body.add(Row(
-//      crossAxisAlignment: CrossAxisAlignment.center,
-//      mainAxisAlignment: MainAxisAlignment.center,
-//      children: [
-//        RaisedButton(
-//          child: Text(
-//            "السابق",
-//            style: TextStyle(
-//              fontSize: 20,
-//              color: Colors.white,
-//            ),
-//          ),
-//          onPressed: openPrevious,
-//          color: Color(0xff4caf50),
-//        ),
-//        RaisedButton(
-//          child: Text(
-//            "التالي",
-//            style: TextStyle(
-//              fontSize: 20,
-//              color: Colors.white,
-//            ),
-//          ),
-//          onPressed: openNext,
-//          color: Color(0xff4caf50),
-//        ),
-//      ],
-//    ));
-
     return body;
   }
 
