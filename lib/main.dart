@@ -22061,7 +22061,7 @@ class MyAppState extends State<MyApp> {
       supportedLocales: [
         Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
       ],
-      title: 'Welcome to Flutter',
+      title: 'المدائح',
       theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
       home: Scaffold(
           appBar: AppBar(

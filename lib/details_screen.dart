@@ -4,6 +4,8 @@ import 'dart:convert' as convert;
 import 'package:admob_flutter/admob_flutter.dart';
 import 'dart:io' show Platform;
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 
 
 class Details extends StatefulWidget {
@@ -39,7 +41,6 @@ class DetailsState extends State<Details> {
     if (!(links.isEmpty || links.first["link"].isEmpty || links.first['source'] != "you_tube")){
       ids = links.first["link"].split("/embed/").last;
     }
-    print(ids);
     _controller = YoutubePlayerController(
       initialVideoId: ids,
       flags: YoutubePlayerFlags(
@@ -61,6 +62,15 @@ class DetailsState extends State<Details> {
     List<Widget> body = [];
     if (!this.ids.isEmpty){
       body.add(YoutubePlayer(controller: _controller));
+      body.add(
+        Container(
+            height: 300,
+            child: WebView(
+              initialUrl: Uri.dataFromString('<html><body><iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://www.youtube.com/embed/qjjMgYaDGiM"></iframe></body></html>', mimeType: 'text/html').toString(),
+              javascriptMode: JavascriptMode.unrestricted,
+            )
+        )
+      );
     }
 
     body.add(SizedBox(height: 15,));
