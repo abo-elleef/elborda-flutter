@@ -12,7 +12,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:admob_flutter/admob_flutter.dart';
+import 'dart:io' show Platform;
+
 void main() {
+  Admob.initialize(Platform.isIOS
+      ? "ca-app-pub-2772630944180636~4608953642"
+      : "ca-app-pub-2772630944180636~1708790676");
   runApp(
     MaterialApp(
       localizationsDelegates: [
@@ -38,10 +44,14 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  AdmobBannerSize bannerSize;
+
   @override
   void initState() {
     getPoems();
     super.initState();
+    bannerSize = AdmobBannerSize.BANNER;
   }
 
   var poemsHash = {
@@ -50,7 +60,7 @@ class MyAppState extends State<MyApp> {
       "name": "بردة المديح المباركة",
       "author": "الإمام محمد البصيري",
       "desc":
-          " بردة المديح تمت في القرن السادس الهجري و شرفها المصطفي بإكمال شطر من أبياتها",
+      " بردة المديح تمت في القرن السادس الهجري و شرفها المصطفي بإكمال شطر من أبياتها",
       "chapters": [
         {
           "id": "1",
@@ -139,6 +149,20 @@ class MyAppState extends State<MyApp> {
                 "اِنِّي اتَّهَمْتُ نصيحَ الشَّيْبِ فِي عَذَلِي ",
                 " والشَّيْبُ أبعَدُ في نُصْحٍ عَنِ التُّهَمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "1",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420223",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "18",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420223&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -257,6 +281,20 @@ class MyAppState extends State<MyApp> {
                 "ولا تزودت قبل الموت نافلة  ",
                 "    ولم أُصل سوى فرض ولم أصم"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "2",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420481",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "19",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420481&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -474,6 +512,20 @@ class MyAppState extends State<MyApp> {
                 " طوبى لمُنتَشِقٍ منه وملتَثِمِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "3",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420985",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "20",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420985&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
+            }
           ]
         },
         {
@@ -570,6 +622,20 @@ class MyAppState extends State<MyApp> {
                 "نَبْذَا به بَعدَ تسبيحٍ بِبَطنِهِمَا ",
                 " نَبْذَ المُسَبِّحِ مِن أحشاءِ ملتَقِمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "4",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420940",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "21",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420940&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -681,6 +747,20 @@ class MyAppState extends State<MyApp> {
                 "بعارِضٍ جادَ أو خِلْتَ البِطَاحَ بها ",
                 " سَيْبٌ مِنَ اليمِّ أو سَيْلٌ مِنَ العَرِمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "5",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420939",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "22",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335420939&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -800,6 +880,20 @@ class MyAppState extends State<MyApp> {
                 " ويُنكِرُ الفَمَ طعمَ الماءِ مِن سَقَمِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "6",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335426195",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "23",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335426195&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
+            }
           ]
         },
         {
@@ -896,6 +990,20 @@ class MyAppState extends State<MyApp> {
                 "لمَّا دَعَى اللهُ داعينا لطاعَتِهِ ",
                 " بأكرمِ الرُّسْلِ كُنَّا أكرَمَ الأُمَمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "7",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421367",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "24",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421367&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -1057,6 +1165,20 @@ class MyAppState extends State<MyApp> {
                 " في الجاهليةِ والتأديبَ في اليُتُمِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "8",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421404",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "25",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421404&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
+            }
           ]
         },
         {
@@ -1146,6 +1268,20 @@ class MyAppState extends State<MyApp> {
                 "ولَم أُرِدْ زَهرَةَ الدنيا التي اقتَطَفَتْ ",
                 " يَدَا زُهَيْرٍ بما أثنَى على هَرِمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "9",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421632",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "26",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421632&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -1265,6 +1401,20 @@ class MyAppState extends State<MyApp> {
                 " فرّجْ بها كربنا يا واسع الكرم"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "10",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421694",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "27",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335421694&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
+            }
           ]
         },
         {
@@ -1382,6 +1532,20 @@ class MyAppState extends State<MyApp> {
                 "محمدٌ قائمٌ للهِ ذو هممٍ  ",
                 " محمَّدٌ خاتِمٌ لِلرُّسُلِ كُلِّهمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "11",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335123150",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "28",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335123150&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
             }
           ]
         },
@@ -1676,6 +1840,20 @@ class MyAppState extends State<MyApp> {
                 "   ما جَنَّ لَيْلُ الدَّيَاجِي أَوْ بَدَا السَّحَرُ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "12",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335122085",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "29",
+              "link":
+              "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/335122085&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+              "source": "sound_cloud"
+            }
           ]
         }
       ]
@@ -1685,7 +1863,7 @@ class MyAppState extends State<MyApp> {
       "name": "نهج البردة",
       "author": "أمير الشعراء أحمد شوقي",
       "desc":
-          " نهج البردة تمت في القرن الثالث عشر الهجري و سار فيها أمير الشعراء علي خطى الإمام البصيري",
+      " نهج البردة تمت في القرن الثالث عشر الهجري و سار فيها أمير الشعراء علي خطى الإمام البصيري",
       "chapters": [
         {
           "id": "13",
@@ -1859,7 +2037,8 @@ class MyAppState extends State<MyApp> {
                 " مَغناكَ أَبعَدُ لِلمُشتاقِ مِن إِرَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "14",
@@ -1963,7 +2142,8 @@ class MyAppState extends State<MyApp> {
                 " طَغيَ الجِيادِ إِذا عَضَّت عَلى الشُكُمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "15",
@@ -2011,7 +2191,8 @@ class MyAppState extends State<MyApp> {
                 " ما بَينَ مُستَلِمٍ مِنهُ وَمُلتَزِمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "16",
@@ -2185,7 +2366,8 @@ class MyAppState extends State<MyApp> {
                 " بِالخُلقِ والخَلقِ مِن حُسنٍ وَمِن عِظَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "17",
@@ -2233,7 +2415,8 @@ class MyAppState extends State<MyApp> {
                 " تُحيِ القُلوبَ وَتُحيِ مَيِّتَ الهِمَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "18",
@@ -2295,7 +2478,8 @@ class MyAppState extends State<MyApp> {
                 " كَاللَيثِ بِالبَهمِ أَو كَالحوتِ بِالبَلَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "19",
@@ -2357,7 +2541,8 @@ class MyAppState extends State<MyApp> {
                 " وَيا مُحَمَّدُ هَذا العَرشُ فَاِستَلِمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "20",
@@ -2433,7 +2618,8 @@ class MyAppState extends State<MyApp> {
                 " وَكَيفَ لا يَتَسامى بِالرَسولِ سَمي"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "21",
@@ -2481,7 +2667,8 @@ class MyAppState extends State<MyApp> {
                 " وَالبَحرُ دونَكَ في خَيرٍ وَفي كَرَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "22",
@@ -2571,7 +2758,8 @@ class MyAppState extends State<MyApp> {
                 " لِقَتلِ نَفسٍ وَلاجاؤوا لِسَفكِ دَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "23",
@@ -2696,7 +2884,8 @@ class MyAppState extends State<MyApp> {
                 " تَرمي بِأُسدٍ وَيَرمي اللَهُ بِالرُجُمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "24",
@@ -2751,7 +2940,8 @@ class MyAppState extends State<MyApp> {
                 " عَن زاخِرٍ بِصُنوفِ العِلمِ مُلتَطِمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "25",
@@ -2848,7 +3038,8 @@ class MyAppState extends State<MyApp> {
                 " كُلُّ اليَواقيتِ في بَغدادَ وَالتُوَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "26",
@@ -2924,7 +3115,8 @@ class MyAppState extends State<MyApp> {
                 " فَلا تَقيسَنَّ أَملاكَ الوَرى بِهِمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "27",
@@ -3014,7 +3206,8 @@ class MyAppState extends State<MyApp> {
                 " نَزيلِ عَرشِكَ خَيرِ الرُسلِ كُلِّهِمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "28",
@@ -3111,7 +3304,8 @@ class MyAppState extends State<MyApp> {
                 " فَتَمِّمِ الفَضلَ وَاِمنَح حُسنَ مُختَتَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -3120,7 +3314,7 @@ class MyAppState extends State<MyApp> {
       "name": "يا رَائِدَ البَرقِ",
       "author": " محمود سامى البارودى",
       "desc":
-          "تم نظم ابياتها في القرن الثامن عشر الميلادي كبداية للنهوض بالشعر الحديث بعد فترة كبيرة من الخفوت",
+      "تم نظم ابياتها في القرن الثامن عشر الميلادي كبداية للنهوض بالشعر الحديث بعد فترة كبيرة من الخفوت",
       "chapters": [
         {
           "id": "29",
@@ -3826,7 +4020,8 @@ class MyAppState extends State<MyApp> {
                 " أَستارُهُ عَن ضَميرِ اللَوحِ وَالقَلَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "30",
@@ -4532,7 +4727,8 @@ class MyAppState extends State<MyApp> {
                 " مَضى عَلى عَزمِهِ لانهارَ في رَجَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "31",
@@ -5238,7 +5434,8 @@ class MyAppState extends State<MyApp> {
                 " فَتحاً وَعَود كَرِيمٍ طاهِرِ الشِّيَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "32",
@@ -5944,7 +6141,8 @@ class MyAppState extends State<MyApp> {
                 " تَمحُو ذُنُوبي غَداةَ الخَوفِ وَالنَّدَمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "33",
@@ -6279,8 +6477,9 @@ class MyAppState extends State<MyApp> {
                 " تَمحُو خَطاياهُ في بَدءٍ وَمُختَتَمِ"
               ]
             }
-          ]
-        }
+          ],
+          "links": []
+        },
       ]
     },
     "4": {
@@ -6288,7 +6487,7 @@ class MyAppState extends State<MyApp> {
       "name": "بردة كعب بن زهير",
       "author": "الصحابي الجليل كعب ان زهير",
       "desc":
-          "البردة الأولي و كانت أمام المصطفي صلي الله عليه وسلم بالمدينة المنورة",
+      "البردة الأولي و كانت أمام المصطفي صلي الله عليه وسلم بالمدينة المنورة",
       "chapters": [
         {
           "id": "34",
@@ -6385,7 +6584,8 @@ class MyAppState extends State<MyApp> {
                 " وما إِخالُ لَدَيْنا مِنْكِ تَنْويلُ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "35",
@@ -6538,7 +6738,8 @@ class MyAppState extends State<MyApp> {
                 " مُشَقَّقٌ عَنْ تَراقيها رَعابيلُ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "36",
@@ -6572,7 +6773,8 @@ class MyAppState extends State<MyApp> {
                 " يَوْماً على آلَةٍ حَدْباءَ مَحْمولُ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "37",
@@ -6669,7 +6871,8 @@ class MyAppState extends State<MyApp> {
                 " مُطَرَّحَ البَزِّ والدَّرْسانِ مَأْكولُ"
               ]
             }
-          ]
+          ],
+          "links": []
         },
         {
           "id": "38",
@@ -6731,7 +6934,8 @@ class MyAppState extends State<MyApp> {
                 " وما لَهُمْ عَنْ حِياضِ الموتِ تَهْليلُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -6740,7 +6944,7 @@ class MyAppState extends State<MyApp> {
       "name": "أهلا وسهلا بالنبى",
       "author": "",
       "desc":
-          "أَهِلَّا وَسَهِلَا بالنبى  ..   خُيِّرَ الْأَنَامُ يا سَيِّدِنَا النبى العربى  ..   أَهِلَّا وَسَهِلَا بِالْحَبيبِ  ..   خُيِّرَ الْأَنَامُ نِعْمَ الطَّبِيبُ  ..   يا مُفْرِحُ الْقُلَّبِ الْكَئِيبِ  ..   خُيِّرَ الْأَنَامُ يا سَيِّدِنَا النبى العربى",
+      "أَهِلَّا وَسَهِلَا بالنبى  ..   خُيِّرَ الْأَنَامُ يا سَيِّدِنَا النبى العربى  ..   أَهِلَّا وَسَهِلَا بِالْحَبيبِ  ..   خُيِّرَ الْأَنَامُ نِعْمَ الطَّبِيبُ  ..   يا مُفْرِحُ الْقُلَّبِ الْكَئِيبِ  ..   خُيِّرَ الْأَنَامُ يا سَيِّدِنَا النبى العربى",
       "chapters": [
         {
           "id": "39",
@@ -6887,6 +7091,13 @@ class MyAppState extends State<MyApp> {
                 " خُيِّرَ الْأَنَامُ العربى"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "30",
+              "link": "https://www.youtube.com/embed/EQkwvi9lxYg",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -6896,7 +7107,7 @@ class MyAppState extends State<MyApp> {
       "name": "عودى يا ليالى الرضا",
       "author": "",
       "desc":
-          "عودى يا ليالى الرِّضَا  ..   بِالْأُنْسِ الذى قَدْ مَضَّى  ..   قَدْ رَضَّى الْمَحْبُوبُ  ..   وَنُلْنَا الْمَطْلُوبَ  ..   وَنَادَى مُنادَى الشُّرَّفِ  ..   عَفَا اللَّهُ عَمَّا سَلَفَ",
+      "عودى يا ليالى الرِّضَا  ..   بِالْأُنْسِ الذى قَدْ مَضَّى  ..   قَدْ رَضَّى الْمَحْبُوبُ  ..   وَنُلْنَا الْمَطْلُوبَ  ..   وَنَادَى مُنادَى الشُّرَّفِ  ..   عَفَا اللَّهُ عَمَّا سَلَفَ",
       "chapters": [
         {
           "id": "40",
@@ -6988,6 +7199,13 @@ class MyAppState extends State<MyApp> {
                 "قَوَّلُوا عَبْدَنَا لَا تَخِفُّ ",
                 " عَفَا اللَّهُ عَمَّا سَلَفَ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "33",
+              "link": "https://www.youtube.com/embed/AQIRa_ofiRM",
+              "source": "you_tube"
             }
           ]
         }
@@ -7103,6 +7321,18 @@ class MyAppState extends State<MyApp> {
                 " عَلَى دَرْبِهِمْ نَظَرْتِ عيونى"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "14",
+              "link": "https://www.youtube.com/embed/1ahgzx-7cxA",
+              "source": "you_tube"
+            },
+            {
+              "id": "13",
+              "link": "https://www.youtube.com/embed/u2VuY04hm5M",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -7216,7 +7446,8 @@ class MyAppState extends State<MyApp> {
                 " مُشْتَاقُ لَكَ يا رَسُولِ اللَّهِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -7336,6 +7567,18 @@ class MyAppState extends State<MyApp> {
                 "   سَيِّدُنَا النبى نَظَرَهُ مُدَّ الْعَطا لله"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "34",
+              "link": "https://www.youtube.com/embed/pzZO7xgkxcA",
+              "source": "you_tube"
+            },
+            {
+              "id": "35",
+              "link": "https://www.youtube.com/embed/YN70BYu-v-E",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -7446,6 +7689,18 @@ class MyAppState extends State<MyApp> {
                 " اتهنت الرّوحَ وَيا الْعَيْنِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "36",
+              "link": "https://www.youtube.com/embed/2sm1WlbxtOc",
+              "source": "you_tube"
+            },
+            {
+              "id": "37",
+              "link": "https://www.youtube.com/embed/BGqT7Dc2K58",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -7547,7 +7802,8 @@ class MyAppState extends State<MyApp> {
               "id": "1032",
               "body": ["وَيَوْمُ الْحسَابِ ", " فَالرُّجُوعُ الِيكَ"]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -7629,7 +7885,8 @@ class MyAppState extends State<MyApp> {
               "id": "1048",
               "body": ["وَأَبْنَاءُ الْكرَامِ ", " أَبِنَاءُ رَسُولِ اللَّهِ"]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -7732,6 +7989,13 @@ class MyAppState extends State<MyApp> {
                 " أَسْلَمُوا عَلَى يَدَيْهِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "38",
+              "link": "https://www.youtube.com/embed/zPekKPyS3Zk",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -7816,6 +8080,18 @@ class MyAppState extends State<MyApp> {
             {
               "id": "1096",
               "body": ["هُوَ لله دَليل ", " عَاشِقُ رَسُولِ اللَّهِ"]
+            }
+          ],
+          "links": [
+            {
+              "id": "39",
+              "link": "https://www.youtube.com/embed/I7lgFxJeq14",
+              "source": "you_tube"
+            },
+            {
+              "id": "40",
+              "link": "https://www.youtube.com/embed/0vxYmZrQRzQ",
+              "source": "you_tube"
             }
           ]
         }
@@ -7923,6 +8199,18 @@ class MyAppState extends State<MyApp> {
                 " و أَنَا الْكَوْكَبُ بَيْنَ النَّيِّرَيْنِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "43",
+              "link": "https://www.youtube.com/embed/PLJba9QDRvs",
+              "source": "you_tube"
+            },
+            {
+              "id": "44",
+              "link": "https://www.youtube.com/embed/SZzKYMkuxV8",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -8028,6 +8316,13 @@ class MyAppState extends State<MyApp> {
               "id": "1127",
               "body": ["وَزَادَنَا مِنْ زَادِهِ ", " مِنْ زَادَ رَسُولُ اللَّه"]
             }
+          ],
+          "links": [
+            {
+              "id": "50",
+              "link": "https://www.youtube.com/embed/dWPXpaiqIFk",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -8101,13 +8396,20 @@ class MyAppState extends State<MyApp> {
               "id": "1140",
               "body": ["سَيِّدُنَا وَسَيِّدُنَا ", " عَلَى كُلُّ خَلْق اللَّه"]
             }
+          ],
+          "links": [
+            {
+              "id": "51",
+              "link": "https://www.youtube.com/embed/8AFISFXcj6U?start=30",
+              "source": "you_tube"
+            }
           ]
         }
       ]
     },
     "19": {
       "id": "19",
-      "name": "يا كامل الذات",
+      "name": "يا كامل الذات\n",
       "author": "",
       "desc":
           "يا كَامِلُ الذات يا جَمِيلِ الصِّفَاتِ  ..   عَلَيكَ الصَّلَاَةَ وَعَلَيْكَ السّلَامَ  ..   حَبَّ طه الْعَدْنانَ قَدْ سُكِنَ الْجِنَّانُ  ..   فاسبحوافى الْجِنَّانَ وَاُطْلُبُوا الْمَغْفِرَةَ  ..   بغيتى وَالطِّلَبَ لِزَعيمِ الْعُرْبِ  ..   فى حشاى الْحَرَّابَ هَائِمًا فى الفلاه",
@@ -8178,6 +8480,13 @@ class MyAppState extends State<MyApp> {
                 "عندذكرك نَهِيمَ يُشْفَى مَدْحُكَ سَقِيمُ ",
                 " حَادِيَا يا نَدِيمِ هَيْجِ الْمَعْمَلَاتِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "49",
+              "link": "https://www.youtube.com/embed/Ukc7g3c966E",
+              "source": "you_tube"
             }
           ]
         }
@@ -8253,6 +8562,18 @@ class MyAppState extends State<MyApp> {
               "id": "1163",
               "body": ["صَلَاَةٌ عَلَى النبى ", " هُوَ بَاهَى الْجِمَالُ"]
             }
+          ],
+          "links": [
+            {
+              "id": "52",
+              "link": "https://www.youtube.com/embed/hojXuDOKaAI",
+              "source": "you_tube"
+            },
+            {
+              "id": "53",
+              "link": "https://www.youtube.com/embed/NhvtFW69A5g",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -8327,6 +8648,13 @@ class MyAppState extends State<MyApp> {
             {
               "id": "1178",
               "body": ["وَهُمْ القاده ", " فَرَجَوَا الْكُرَبَ"]
+            }
+          ],
+          "links": [
+            {
+              "id": "54",
+              "link": "https://www.youtube.com/embed/jIA9IQaU9i0?start=73",
+              "source": "you_tube"
             }
           ]
         }
@@ -8457,6 +8785,13 @@ class MyAppState extends State<MyApp> {
               "id": "1199",
               "body": ["سيدى بُرْهَانَ أمامى ", " هُوَ حَبيبُ حبيبى"]
             }
+          ],
+          "links": [
+            {
+              "id": "57",
+              "link": "https://www.youtube.com/embed/pLhJxE2CfFE",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -8548,6 +8883,18 @@ class MyAppState extends State<MyApp> {
                 "لَوْ أَنَّ كُلُّ الْحُسْنِ يَكْمُلُ صُورَة ",
                 " ورآهُ كَانَ مُهَلِّلَا وَمُكَبِّرَا"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "55",
+              "link": "https://www.youtube.com/embed/3yf_fUsqiB4?start=30",
+              "source": "you_tube"
+            },
+            {
+              "id": "56",
+              "link": "https://www.youtube.com/embed/xTOdLMxXRvE?start=10",
+              "source": "you_tube"
             }
           ]
         }
@@ -9019,6 +9366,13 @@ class MyAppState extends State<MyApp> {
                 "  تَمُّوا النّعمةَ وَاِحْفَظُوهَا عَلَينَا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "58",
+              "link": "https://www.youtube.com/embed/59rgXAFmAHI",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -9097,7 +9451,8 @@ class MyAppState extends State<MyApp> {
                 " حَادِيَا يا نَدِيمِ هَيْجِ الْمَعْمَلَاتِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -9170,6 +9525,23 @@ class MyAppState extends State<MyApp> {
             {
               "id": "1303",
               "body": ["صَلَاَةٌ عَلَى النبى ", " هُوَ بَاهَى الْجِمَالُ"]
+            }
+          ],
+          "links": [
+            {
+              "id": "15",
+              "link": "https://www.youtube.com/embed/7WZr3XyITHo",
+              "source": "you_tube"
+            },
+            {
+              "id": "16",
+              "link": "https://www.youtube.com/embed/CNrKSX2jl-c",
+              "source": "you_tube"
+            },
+            {
+              "id": "17",
+              "link": "https://www.youtube.com/embed/NhvtFW69A5g",
+              "source": "you_tube"
             }
           ]
         }
@@ -9291,7 +9663,8 @@ class MyAppState extends State<MyApp> {
                 " لَهُ يا صَاحِب الشِّيَمِ الْحسَانِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -9502,6 +9875,18 @@ class MyAppState extends State<MyApp> {
                 " كَأَنّكَ قَدْ خَلِقَتْ كَمَا تشااااااء"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "59",
+              "link": "https://www.youtube.com/embed/qykPfOjUns4",
+              "source": "you_tube"
+            },
+            {
+              "id": "60",
+              "link": "https://www.youtube.com/embed/jGVFiCf9bm4?start=4",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -9656,6 +10041,18 @@ class MyAppState extends State<MyApp> {
                 "فَصَلَاَتُنَا هى خُيِّرَ زَادُ ",
                 " يا عِزِّنَا وَاللَّهِ بَطِّهِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "61",
+              "link": "https://www.youtube.com/embed/tM_6mIKEq0c",
+              "source": "you_tube"
+            },
+            {
+              "id": "62",
+              "link": "https://www.youtube.com/embed/0oRtU-VuCSU?start=4",
+              "source": "you_tube"
             }
           ]
         }
@@ -9851,6 +10248,18 @@ class MyAppState extends State<MyApp> {
                 " وَمَا أَنَا عَنْ وُصَلِكُمْ بِالْغِنَى"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "63",
+              "link": "https://www.youtube.com/embed/NHqPQVvkol4",
+              "source": "you_tube"
+            },
+            {
+              "id": "64",
+              "link": "https://www.youtube.com/embed/KWvsXE_stic",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -9943,7 +10352,8 @@ class MyAppState extends State<MyApp> {
                 " أَزَالَ عَنهُمْ جَمِيعَ الشَّكِّ وَالْكَدَرِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -10045,6 +10455,13 @@ class MyAppState extends State<MyApp> {
                 "وَمُفَارِقُ الْأَحْبَابِ وَالْأَوْلَاَدِ ",
                 " صَلَّى عَلِيُّكَ اللَّه يا عَلْم الْهُدَى"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "65",
+              "link": "https://www.youtube.com/embed/b2ONmf4TsLo",
+              "source": "you_tube"
             }
           ]
         }
@@ -10176,6 +10593,13 @@ class MyAppState extends State<MyApp> {
               "id": "1473",
               "body": ["وَاِجْعَلْ سَعَى مَشْكُورَا ", " لِنَدَاكَ ليحرسنى"]
             }
+          ],
+          "links": [
+            {
+              "id": "66",
+              "link": "https://www.youtube.com/embed/7jzMAXQuSVU?start=10",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -10255,6 +10679,13 @@ class MyAppState extends State<MyApp> {
             {
               "id": "1487",
               "body": ["أَنَا الْفَقِيرُ الْمُعَنَّى ", " رَقَّوْا لحالى وذلى"]
+            }
+          ],
+          "links": [
+            {
+              "id": "67",
+              "link": "https://www.youtube.com/embed/FJYJ8I6OF-c",
+              "source": "you_tube"
             }
           ]
         }
@@ -10347,6 +10778,14 @@ class MyAppState extends State<MyApp> {
                 "مريدى تَمَسَّكَ وَكْنُ بى وَاثِقًا ",
                 " لِأُحْمِيكَ فى الدُّنْيَا وَيَوْمَ الْقِيَامَةِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "68",
+              "link":
+                  "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/114829053",
+              "source": "sound_cloud"
             }
           ]
         }
@@ -10524,6 +10963,13 @@ class MyAppState extends State<MyApp> {
                 " مِنْ عَمْرو بُنّ وَدّ بِالسَّيْفِ اِنْتَقَمَ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "69",
+              "link": "https://www.youtube.com/embed/cZxY30EdDpA",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -10622,6 +11068,13 @@ class MyAppState extends State<MyApp> {
                 "جِئْتِكُمْ مُتَوَسِّلًا فإقبل رجائى ",
                 " بالدسوقى خُتُمَ العارفينا"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "70",
+              "link": "https://www.youtube.com/embed/dLmsi_EH3cU",
+              "source": "you_tube"
             }
           ]
         }
@@ -10995,6 +11448,13 @@ class MyAppState extends State<MyApp> {
                 " وَفُزْنَا بِهِ حَقَا وَتَمُّ سُرُورِنَا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "71",
+              "link": "https://www.youtube.com/embed/rnxgHMzexUU",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -11136,6 +11596,18 @@ class MyAppState extends State<MyApp> {
                 "  آدَمُ إذاَ تُرِيدُ حوا عَلَى النبى صَلَّى"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "72",
+              "link": "https://www.youtube.com/embed/miDSYVjivO4?start=5",
+              "source": "you_tube"
+            },
+            {
+              "id": "73",
+              "link": "https://www.youtube.com/embed/v2VHZcldyDQ",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -11213,6 +11685,13 @@ class MyAppState extends State<MyApp> {
                 "صَلَاَةُ الْعُشَّاقِ مِنْ دَنِّ عايق ",
                 " تُهَدَّى لِلْفَارِقِ وَيَتِمُّ وصالى"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "74",
+              "link": "https://www.youtube.com/embed/Z_lskfeBAIA",
+              "source": "you_tube"
             }
           ]
         }
@@ -11296,13 +11775,25 @@ class MyAppState extends State<MyApp> {
               "id": "1624",
               "body": ["وَالْمُصْطَفَى ضَمَّاهُ ", " قَبَّلَ رَسُولُ اللَّه"]
             }
+          ],
+          "links": [
+            {
+              "id": "75",
+              "link": "https://www.youtube.com/embed/s_AtTxg9Z9s",
+              "source": "you_tube"
+            },
+            {
+              "id": "76",
+              "link": "https://www.youtube.com/embed/rRKKK6PJU6g?start=10",
+              "source": "you_tube"
+            }
           ]
         }
       ]
     },
     "47": {
       "id": "47",
-      "name": "-أيها المشتاق لا تنم",
+      "name": "أيها المشتاق لا تنم",
       "author": "",
       "desc":
           "أَيّهَا الْمُشْتَاقَ لَا تَنِمُّ  ..   هَذِهِ أَنُوَّارَ ذى سُلَّم  ..   عَنْ قَرِيبٍ نَحْنُ فى الْحُرَمَ  ..    عِنْدَ خَيْر الْعُرْبِ و الْعَجَمَ  ..   فَاُسْتُلِمَ شَبَّاكَ حُجْرَتِهِ  ..   وإغتنم فى الْقُرُبُ حضرتُهُ",
@@ -11408,6 +11899,18 @@ class MyAppState extends State<MyApp> {
                 "إِنْ بِرُؤْيَا نَهْنَأُ بِرُؤْيَتِهِ ",
                 "  إِنْ بِصَحْوِ يَغْنَى عَنِ الْحَلَمِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "41",
+              "link": "https://www.youtube.com/embed/owZq1LiFNpw",
+              "source": "you_tube"
+            },
+            {
+              "id": "42",
+              "link": "https://www.youtube.com/embed/tHLqgLETOPM",
+              "source": "you_tube"
             }
           ]
         }
@@ -11521,6 +12024,18 @@ class MyAppState extends State<MyApp> {
                 "إذاَ لَمْ تَذُقْ مَا ذَاقَ النَّاسُ فى الْهَوَى ",
                 "  فِيَا خالى الْحَشَا لَا تُعَنِّفُنَا"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "77",
+              "link": "https://www.youtube.com/embed/R1YA-UaItlA",
+              "source": "you_tube"
+            },
+            {
+              "id": "78",
+              "link": "https://www.youtube.com/embed/0VnH7RflT7U",
+              "source": "you_tube"
             }
           ]
         }
@@ -11971,6 +12486,18 @@ class MyAppState extends State<MyApp> {
                 " وَلِي أَبَدَا مَيْل إلَيْهِمْ وَإِنْ مَلُّوا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "79",
+              "link": "https://www.youtube.com/embed/vrWZ_t_yk34",
+              "source": "you_tube"
+            },
+            {
+              "id": "80",
+              "link": "https://www.youtube.com/embed/sQwUtlhI_eg?start=90",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -12104,6 +12631,24 @@ class MyAppState extends State<MyApp> {
                 "يارب صَلَّى عَلَى الْحَبيبِ مُحَمَّدَ ",
                 " مِنْ نَوْرِهِ فى الْكَوْنَ عَمٌّ وَلَاحَا"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "81",
+              "link":
+                  "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/466346469",
+              "source": "sound_cloud"
+            },
+            {
+              "id": "82",
+              "link": "https://www.youtube.com/embed/AnWvaUNjHgs",
+              "source": "you_tube"
+            },
+            {
+              "id": "83",
+              "link": "https://www.youtube.com/embed/aMx_mCfixf8",
+              "source": "you_tube"
             }
           ]
         }
@@ -12379,7 +12924,8 @@ class MyAppState extends State<MyApp> {
                 "  كَتَعْدَادِ الرِّمَالِ مَعَ الْجِبَالِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -12544,6 +13090,13 @@ class MyAppState extends State<MyApp> {
                 "  بِجَمِيعَ الصَّالِحَاتِ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "84",
+              "link": "https://www.youtube.com/embed/jbJLJMLNTHs?start=60",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -12622,7 +13175,8 @@ class MyAppState extends State<MyApp> {
                 " مِنْ جَاءَ بِالْقُرْآنِ وَهُوَ نَصُوحُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -12788,6 +13342,13 @@ class MyAppState extends State<MyApp> {
                 "  بِالْوَرَعِ الْبادَى مِنْ زَيْنَب"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "85",
+              "link": "https://www.youtube.com/embed/Tlh5ErfDPQM",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -12887,7 +13448,8 @@ class MyAppState extends State<MyApp> {
                 "  هُوَ سيدى أى نِعْمَ قَدْ جَاءَكُمْ عَبْدَا"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -12950,6 +13512,18 @@ class MyAppState extends State<MyApp> {
                 "مَا لِي وَلِلنَّاسِ كَمْ لَا مَوَّنَنِي سَفَّهَا ",
                 " دَيْنُي لِنَفْسَيْ وَدَيْنِ النَّاسِ لِلنَّاسِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "86",
+              "link": "https://www.youtube.com/embed/d6FiqKJGfJE",
+              "source": "you_tube"
+            },
+            {
+              "id": "87",
+              "link": "https://www.youtube.com/embed/F6_nf-n8eZ8?start=6",
+              "source": "you_tube"
             }
           ]
         }
@@ -13190,6 +13764,13 @@ class MyAppState extends State<MyApp> {
                 "  كُلَّ يُقَوِّلُ امام الدِّينَ حَامِيَهُ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "88",
+              "link": "https://www.youtube.com/embed/ql2tdRTtJRQ",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -13401,6 +13982,18 @@ class MyAppState extends State<MyApp> {
                 "  عَلَى الْمُخْتَارِ ثُمَّ الطاهرينا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "89",
+              "link": "https://www.youtube.com/embed/BBVvxL7b2nY",
+              "source": "you_tube"
+            },
+            {
+              "id": "90",
+              "link": "https://www.youtube.com/embed/O0yZ8D4GobE",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -13535,7 +14128,8 @@ class MyAppState extends State<MyApp> {
               "id": "1931",
               "body": ["هُيِّجَ عُقُولُ ", " عَشِقَتْ مُحَمَّدُ"]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -13633,6 +14227,13 @@ class MyAppState extends State<MyApp> {
                 "إِنْ ضَاقَ صَدْرُكَ زِرّ لِزَيْنَبٍ وَاِهْدِهَا ",
                 "  بُنْتِ الأمام وَنَوَرَهَا يَتَشَعْشَعُ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "91",
+              "link": "https://www.youtube.com/embed/iJBhJkMVxdw",
+              "source": "you_tube"
             }
           ]
         }
@@ -13733,7 +14334,8 @@ class MyAppState extends State<MyApp> {
                 "  فَهُمْ فِينَا مَجْلَى لإرتقاء السَّفِينَةَ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -13861,7 +14463,8 @@ class MyAppState extends State<MyApp> {
                 "  يا بِنْتِ الْكَوْكَبَيْنِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -13937,6 +14540,13 @@ class MyAppState extends State<MyApp> {
                 "صَحِبَهُ خَيْرُ الرُّجَّالِ ",
                 "  بَايَعُوا الْهادَى مُحَمَّدَ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "92",
+              "link": "https://www.youtube.com/embed/hPGidzC-ye0",
+              "source": "you_tube"
             }
           ]
         }
@@ -14018,7 +14628,8 @@ class MyAppState extends State<MyApp> {
                 "  يارب بِحُبَى فى زَيْنَبَ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -14109,6 +14720,23 @@ class MyAppState extends State<MyApp> {
                 "نَوَّرَكَ يا خَضِرَا مِنْ نَوْرِهِ ",
                 " زَوَّرَهُ نَبِيُّنَا كُتُبِهَا لَكَ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "93",
+              "link": "https://www.youtube.com/embed/exzI3RvxRfM",
+              "source": "you_tube"
+            },
+            {
+              "id": "94",
+              "link": "https://www.youtube.com/embed/0yfXYxJzDUw",
+              "source": "you_tube"
+            },
+            {
+              "id": "95",
+              "link": "https://www.youtube.com/embed/E7S_gdvgrTE",
+              "source": "you_tube"
             }
           ]
         }
@@ -14202,6 +14830,18 @@ class MyAppState extends State<MyApp> {
                 "دا التُّرَبِ مِنْ أَرْضِكَ ",
                 " يَشْفَى السَّقِيمُ فيكى"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "31",
+              "link": "https://www.youtube.com/embed/exzI3RvxRfM",
+              "source": "you_tube"
+            },
+            {
+              "id": "32",
+              "link": "https://www.youtube.com/embed/0yfXYxJzDUw",
+              "source": "you_tube"
             }
           ]
         }
@@ -14309,6 +14949,13 @@ class MyAppState extends State<MyApp> {
                 " وَسُرُّ لِفُعُلِهِمْ طه الرَّسُولَ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "45",
+              "link": "https://www.youtube.com/embed/pjlGaUXnRI0",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -14371,6 +15018,13 @@ class MyAppState extends State<MyApp> {
                 "وَالْحُجَّاجُ رَاحُوا وسابونى ",
                 " دَاوَى الْقُلُوبُ يا مطيِّب"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "96",
+              "link": "https://www.youtube.com/embed/UPeyRjMC6mc",
+              "source": "you_tube"
             }
           ]
         }
@@ -14498,6 +15152,18 @@ class MyAppState extends State<MyApp> {
                 "بِكَمَالِهِ بَلُغَ الْمُنَى وَزِيادُهُ ",
                 "  صَلُّوا عَلَى خَيْر الْأَنَامِ مُحَمَّد"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "97",
+              "link": "https://www.youtube.com/embed/ZxkERv247hA",
+              "source": "you_tube"
+            },
+            {
+              "id": "98",
+              "link": "https://www.youtube.com/embed/r6pWP6k8Et8",
+              "source": "you_tube"
             }
           ]
         }
@@ -14934,6 +15600,13 @@ class MyAppState extends State<MyApp> {
                 "  وَلِعَيْني قُلْتُ هَذَا بِذاكا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "99",
+              "link": "https://www.youtube.com/embed/1Svz-4arE_A",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -15088,7 +15761,8 @@ class MyAppState extends State<MyApp> {
               "id": "2146",
               "body": ["رُبَّ أَرِزْقنَا الْمُحِبَّة ", " "]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -15165,6 +15839,13 @@ class MyAppState extends State<MyApp> {
                 "تِرَاهُمْ سكَارَى تِرَاهُمْ حيَارَى ",
                 " عِنْدَ ذِكْر اللَّه عِنْدَ ذِكْر اللَّه"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "100",
+              "link": "https://www.youtube.com/embed/FSA6cof-GGA",
+              "source": "you_tube"
             }
           ]
         }
@@ -15322,6 +16003,13 @@ class MyAppState extends State<MyApp> {
               "id": "2188",
               "body": ["طه هُوَ فَجْرٌ وَلَاحَ ", " طه يَنْعَشَ الْأَرْوَاحُ"]
             }
+          ],
+          "links": [
+            {
+              "id": "101",
+              "link": "https://www.youtube.com/embed/oMaINsPiTQA?start=180",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -15453,6 +16141,13 @@ class MyAppState extends State<MyApp> {
               "id": "2211",
               "body": ["وَآلَ طه جَمِيعًا ", " أَخُصَّ مِنهُمْ أَنْتِ"]
             }
+          ],
+          "links": [
+            {
+              "id": "102",
+              "link": "https://www.youtube.com/embed/jABf2yUIUms",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -15517,7 +16212,8 @@ class MyAppState extends State<MyApp> {
                 " لَهُ الْحسنَى وَالْمُجِدُّ بِزِيادِهُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -15629,6 +16325,13 @@ class MyAppState extends State<MyApp> {
                 "زرنى وَلَوْ طَيْفَ فى الْأحْلَاَمَ ",
                 "  كُلَّ مرادى أَشُوفُهُ بعينى"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "103",
+              "link": "https://www.youtube.com/embed/dn8CO8G7itg",
+              "source": "you_tube"
             }
           ]
         }
@@ -15753,6 +16456,18 @@ class MyAppState extends State<MyApp> {
                 "نَلُتُّ اللى كَانَ فَوْقَ مطلبى ",
                 " وَصَبِحَتْ مدَاحُ النبى"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "104",
+              "link": "https://www.youtube.com/embed/CrnZrmK2ASw",
+              "source": "you_tube"
+            },
+            {
+              "id": "105",
+              "link": "https://www.youtube.com/embed/9HGEJJlagKg",
+              "source": "you_tube"
             }
           ]
         }
@@ -15923,7 +16638,8 @@ class MyAppState extends State<MyApp> {
                 " فَقَدْ رُفِعَ التَّكْليفُ فِي سُكَّرِنَا عَنَا"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -16085,6 +16801,13 @@ class MyAppState extends State<MyApp> {
                 " مُحَمَّدُ خَيْرِ مِنْ أَوَفَّى وَمِنْ نَذْرًا"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "106",
+              "link": "https://www.youtube.com/embed/fgqSSXXFTAQ",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -16197,6 +16920,23 @@ class MyAppState extends State<MyApp> {
                 "وَقَوَّلُوا رَعَاكَ اللَّهُ يا مَيْتِ الْهَوَى ",
                 "  وَأَسْكَنَكَ الْفِرْدَوْسُ قُرُبَ حماكمُ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "46",
+              "link": "https://www.youtube.com/embed/71jeHYbBwgs",
+              "source": "you_tube"
+            },
+            {
+              "id": "47",
+              "link": "https://www.youtube.com/embed/-95Qx0rFKUM",
+              "source": "you_tube"
+            },
+            {
+              "id": "48",
+              "link": "https://www.youtube.com/embed/XF7WkT0hW54",
+              "source": "you_tube"
             }
           ]
         }
@@ -16570,6 +17310,13 @@ class MyAppState extends State<MyApp> {
                 " إِنْ غَابَ عَنْ إِنْسَان عَيْني فهْوَ فِي"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "107",
+              "link": "https://www.youtube.com/embed/MZevKXLmsBY",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -16816,6 +17563,13 @@ class MyAppState extends State<MyApp> {
                 " يَعُمَّانِّ كُلَّ الآل هَا نَحْنُ نَخْتِمُ"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "108",
+              "link": "https://www.youtube.com/embed/GDod_gHwe9o",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17020,6 +17774,13 @@ class MyAppState extends State<MyApp> {
                 " وَيُسْتَرَبّ بِهِ الْإحْسَانُ وَالنِّعَمُ   "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "109",
+              "link": "https://www.youtube.com/embed/bYgOwzWzYdo",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17118,6 +17879,18 @@ class MyAppState extends State<MyApp> {
                 "أَنَا مِنْ حِسَّيْنِ وَحِسَّيْنِ مُنَى ",
                 " فَمَا مَدْحُنَا جَنْبِ مَدْحِ الْحَبيبِ"
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "110",
+              "link": "https://www.youtube.com/embed/fnU0qJ3pVh0",
+              "source": "you_tube"
+            },
+            {
+              "id": "111",
+              "link": "https://www.youtube.com/embed/gTjnqJVhxPc?start=20",
+              "source": "you_tube"
             }
           ]
         }
@@ -17253,7 +18026,8 @@ class MyAppState extends State<MyApp> {
                 " فَأُنَّتْ الْوَسِيلَةُ وَأُنَّتْ السَّبَبُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -17401,6 +18175,13 @@ class MyAppState extends State<MyApp> {
                 " فَبَارَكْتِ زلاتي وَأَمَنَّتْ رَوَّعْتِي"
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "112",
+              "link": "https://www.youtube.com/embed/jIy3s_Iylig",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17514,6 +18295,13 @@ class MyAppState extends State<MyApp> {
                 " مَا ابدی الطَّائِرَ تَغْرِيد "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "113",
+              "link": "https://www.youtube.com/embed/gTjnqJVhxPc",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17604,6 +18392,13 @@ class MyAppState extends State<MyApp> {
                 " رَوِحَهُ مَوَّلَاهُ أوجُدهُ "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "114",
+              "link": "https://www.youtube.com/embed/4AtZNIW2AHY",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17667,6 +18462,13 @@ class MyAppState extends State<MyApp> {
                 "هَذَا مَلِيح وَكُلُّ النَّاسِ تَهْوَاهُ  ",
                 " وَسَائِرُ الْخُلُقِ فى أَوَصَلَفَهُ تَاهُوا "
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "115",
+              "link": "https://www.youtube.com/embed/jJUb56V5nzg",
+              "source": "you_tube"
             }
           ]
         }
@@ -17900,6 +18702,13 @@ class MyAppState extends State<MyApp> {
                 " نَشَّا وَكَأَنَّ الرَّاحَ فى الرَّجَم تَشْرَبُ "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "116",
+              "link": "https://www.youtube.com/embed/3TD9C-lQQkk",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -17971,7 +18780,8 @@ class MyAppState extends State<MyApp> {
               "id": "2572",
               "body": ["ووردى وإلهامى  ", " لسيدى إبراهيم "]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -18062,6 +18872,13 @@ class MyAppState extends State<MyApp> {
                 "وَإِنْ سَجَنُونِي فِي سُجُون جَفَاهُمْ  ",
                 " دَخَلْتُ عَلَيهُمْ بِالشَّفِيعِ المُشَفَّع "
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "117",
+              "link": "https://www.youtube.com/embed/LbY2q5bbuQ8",
+              "source": "you_tube"
             }
           ]
         }
@@ -18302,6 +19119,13 @@ class MyAppState extends State<MyApp> {
                 " دَمُهُ حُلَاَل لِلسُّيوفِ مُبَاح "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "118",
+              "link": "https://www.youtube.com/embed/_zsDWz_A9YU",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -18476,6 +19300,13 @@ class MyAppState extends State<MyApp> {
                 " عَاشِقُ جِمَالِكُمْ حَاشَاهُ يُضَامُّ "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "119",
+              "link": "https://www.youtube.com/embed/EHYP5G5K9lc",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -18553,6 +19384,18 @@ class MyAppState extends State<MyApp> {
                 "فَهَلْ لِي مَأْوَى فِي حَمَاكِ  ",
                 " أَتَمَلَّى.. فَالنَّوَرُ سَبَّانَا "
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "120",
+              "link": "https://www.youtube.com/embed/PcoaQx2JFu0",
+              "source": "you_tube"
+            },
+            {
+              "id": "121",
+              "link": "https://www.youtube.com/embed/eSOStR3C0qI",
+              "source": "you_tube"
             }
           ]
         }
@@ -18716,6 +19559,18 @@ class MyAppState extends State<MyApp> {
                 "فَتَحَ لى بابى وأحوالى ",
                 " مِنْ فَيْض خَيْر الشَّيْخِ أَعَطَاهُ "
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "122",
+              "link": "https://www.youtube.com/embed/XGHBuYhNOeM",
+              "source": "you_tube"
+            },
+            {
+              "id": "123",
+              "link": "https://www.youtube.com/embed/pqIUMo6GPfU",
+              "source": "you_tube"
             }
           ]
         }
@@ -18998,6 +19853,13 @@ class MyAppState extends State<MyApp> {
                 " طه حبيبى.. صَلُّوا عَلَيهِ "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "124",
+              "link": "https://www.youtube.com/embed/cfmITB0p1bU",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -19093,6 +19955,13 @@ class MyAppState extends State<MyApp> {
                 "مِنْ سُرَى بِاللَّيْلِ حُقًّا  ",
                 " وَأَتَى قَبْلَ الصَّبَاحِ "
               ]
+            }
+          ],
+          "links": [
+            {
+              "id": "125",
+              "link": "https://www.youtube.com/embed/KID2I_r-_NA",
+              "source": "you_tube"
             }
           ]
         }
@@ -19347,6 +20216,13 @@ class MyAppState extends State<MyApp> {
                 " يَخُصُّكَ بِالتَّحِيَّةِ يا مُحَمَّدِ "
               ]
             }
+          ],
+          "links": [
+            {
+              "id": "126",
+              "link": "https://www.youtube.com/embed/VaIZbopcSWw",
+              "source": "you_tube"
+            }
           ]
         }
       ]
@@ -19551,7 +20427,8 @@ class MyAppState extends State<MyApp> {
                 " وَكُلُّ مَنْ عَشِقَ الْحَبيبُ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -19664,7 +20541,8 @@ class MyAppState extends State<MyApp> {
                 " وأَسكنَك الفردوسُ قُربَ حِماكُـمُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -19777,7 +20655,8 @@ class MyAppState extends State<MyApp> {
                 " وَأَنْتَ لَهَا تَشَفُّعُ إِذَا زَلَّتْ الْقَدَمُ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -19848,7 +20727,8 @@ class MyAppState extends State<MyApp> {
                 " هَذَا رَسُول اللَّه أَشُرَّفِ خُلُقِهِ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -19940,7 +20820,8 @@ class MyAppState extends State<MyApp> {
                 " مِنَ الْغُصْنِ مُضْطَرِبًا يُهَلِّلُ بِالْبُشْرِ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20151,7 +21032,8 @@ class MyAppState extends State<MyApp> {
                 " وَالتَّابِعِينَ لِهُمْ فِي مِنْهَج الْكَرْمِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20250,7 +21132,8 @@ class MyAppState extends State<MyApp> {
                 " تَرْفَعُ يا وَلَّى فى وَسُطَ الْجِبَالُ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20356,7 +21239,8 @@ class MyAppState extends State<MyApp> {
                 " طَيَّبَ الْعَيْش خلِيعاًهكذا حَال الْمُحِبِّ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20525,7 +21409,8 @@ class MyAppState extends State<MyApp> {
                 " زامعاً يَرُجُّوا التلاق  ويرى نُوِّرَ الْقَدَمُ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20624,7 +21509,8 @@ class MyAppState extends State<MyApp> {
                 "  مُنَعَّمُ بِحُبَى   وَلَهِفَةُ الْغِرَامِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20737,7 +21623,8 @@ class MyAppState extends State<MyApp> {
                 "  فآوانى حِينَ اوانى  فى بقيع رَسُول اللَّهِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20829,7 +21716,8 @@ class MyAppState extends State<MyApp> {
                 " وَلَا تزدرينى  يا بَدْرِ التّمَامِ"
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -20949,7 +21837,8 @@ class MyAppState extends State<MyApp> {
                 " فَالشَّوْقُ نَارَ حَامِيُهُ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     },
@@ -21100,11 +21989,12 @@ class MyAppState extends State<MyApp> {
             {
               "id": "2975",
               "body": [
-                "تالله لِقَدْ سُمِعَتْ مِنْ مَنْطِقِهَا  ",
+                "تالله لِقَدْ سُمِعَتْ مِنْ مَنْطِقِهَا ; ",
                 " مِنْ عَذْب عَاشِقًا جُزِيَ بِالنَّارِ "
               ]
             }
-          ]
+          ],
+          "links": []
         }
       ]
     }
@@ -21113,8 +22003,8 @@ class MyAppState extends State<MyApp> {
   List<dynamic> poems = [];
 
   Future<void> getPoems() async {
-    final String url = 'http://www.elborda.com?format=json';
-    var response = await http.get(url);
+//    final String url = 'http://www.elborda.com?format=json';
+//    var response = await http.get(url);
 
     var items = poemsHash.values.toList().map((hash) {
       return Poem.fromJson(hash);
@@ -21138,15 +22028,24 @@ class MyAppState extends State<MyApp> {
             })
             .expand((pair) => pair)
             .toList();
-        return Details(poem, lines);
+        List links = chapters
+            .map((chapter) {
+          return chapter['links'];
+        })
+            .expand((pair) => pair)
+            .toList();
+        return Details(poem, lines, links);
       }
     }));
   }
-  void filterPoems(search){
+
+  void filterPoems(search) {
     var items = poemsHash.values.toList().map((hash) {
       return Poem.fromJson(hash);
     }).toList();
-    items.removeWhere((poem) { return !poem.name.contains(search);});
+    items.removeWhere((poem) {
+      return !poem.name.contains(search);
+    });
     setState(() {
       poems = items;
     });
@@ -21162,7 +22061,7 @@ class MyAppState extends State<MyApp> {
       supportedLocales: [
         Locale("fa", "IR"), // OR Locale('ar', 'AE') OR Other RTL locales
       ],
-      title: 'Welcome to Flutter',
+      title: 'المدائح',
       theme: ThemeData(primaryColor: Color(0xff4caf50), fontFamily: "uthmanic"),
       home: Scaffold(
           appBar: AppBar(
@@ -21180,22 +22079,34 @@ class MyAppState extends State<MyApp> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Color.fromRGBO(255, 255, 255, 0.8),
                       ),
                       child: TextField(
-                        onChanged: (search){
+                        onChanged: (search) {
                           filterPoems(search);
                         },
                         decoration: InputDecoration(
-                          hintText: 'ابحث باسم القصيدة',
-                          icon: Icon(Icons.search),
-                          border: InputBorder.none
-                        ),
+                            hintText: 'ابحث باسم القصيدة',
+                            icon: Icon(Icons.search),
+                            border: InputBorder.none),
                       ),
+                    ),
+                    AdmobBanner(
+                      adUnitId: Platform.isIOS
+                          ? "ca-app-pub-2772630944180636/8356626963"
+                          : "ca-app-pub-2772630944180636/3185523871",
+                      adSize: bannerSize,
+                      listener:
+                          (AdmobAdEvent event, Map<String, dynamic> args) {
+                        print("loaded");
+//                        handleEvent(event, args, 'Banner');
+                      },
                     ),
                     Container(
                       padding: EdgeInsets.only(bottom: 70),
@@ -21205,7 +22116,11 @@ class MyAppState extends State<MyApp> {
                               onTap: () {
                                 openDetailsPage(context, poem.id.toString());
                               },
-                              child: PoemCard(title: poem.name, desc: poem.desc, author: poem.author,));
+                              child: PoemCard(
+                                title: poem.name,
+                                desc: poem.desc,
+                                author: poem.author,
+                              ));
                         }).toList(),
                       ),
                     )
