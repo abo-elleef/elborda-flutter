@@ -29,6 +29,7 @@ class DetailsState extends State<Details> {
   YoutubePlayerController _controller;
   AdmobBannerSize bannerSize;
   String ids = '';
+  String type = "";
   DetailsState(this.poem, this.pageTitle, this.items, this.links);
    List<dynamic> lines = [];
   List<dynamic> links = [];
@@ -38,8 +39,15 @@ class DetailsState extends State<Details> {
     bannerSize = AdmobBannerSize.BANNER;
     super.initState();
     print(links);
-    if (!(links.isEmpty || links.first["link"].isEmpty || links.first['source'] != "you_tube")){
-      ids = links.first["link"].split("/embed/").last;
+    if (!(links.isEmpty || links.first["link"].isEmpty)){
+      type = links.first["source"];
+      if (links.first['source'] == "you_tube"){
+        ids = links.first["link"].split("/embed/").last;
+      }
+      if (links.first['source'] == "sound_cloud"){
+        ids = links.first["link"];
+      }
+
     }
     _controller = YoutubePlayerController(
       initialVideoId: ids,
@@ -61,18 +69,21 @@ class DetailsState extends State<Details> {
   List<Widget> generateBody(List<dynamic> lines) {
     List<Widget> body = [];
     if (!this.ids.isEmpty){
-      body.add(YoutubePlayer(controller: _controller));
-      body.add(
-        Container(
-            height: 300,
-            child: WebView(
-              initialUrl: Uri.dataFromString('<html><body><iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://www.youtube.com/embed/qjjMgYaDGiM"></iframe></body></html>', mimeType: 'text/html').toString(),
-              javascriptMode: JavascriptMode.unrestricted,
+      if (this.type == 'you_tube'){
+        body.add(YoutubePlayer(controller: _controller));
+      }
+      if (this.type == 'sound_cloud'){
+        body.add(
+            Container(
+                height: 300,
+                child: WebView(
+                  initialUrl: Uri.dataFromString('<html><body> <iframe width="100%" height="100%" scrolling="no" frameborder="no" allow="autoplay" src="'+this.ids +'&color=%23547c7c&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></body></html>', mimeType: 'text/html').toString(),
+                  javascriptMode: JavascriptMode.unrestricted,
+                )
             )
-        )
-      );
+        );
+      }
     }
-
     body.add(SizedBox(height: 15,));
     body.add(AdmobBanner(
       adUnitId:  Platform.isIOS ? "ca-app-pub-2772630944180636/8356626963" : "ca-app-pub-2772630944180636/3185523871",
