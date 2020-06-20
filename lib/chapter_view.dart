@@ -14,7 +14,7 @@ class ChapterView extends StatefulWidget {
 class _ChapterViewState extends State<ChapterView> {
   _ChapterViewState(this.poem);
   var poem;
-  List<Widget> chapterNames= [];
+  List<Widget> chapterNames = [];
 
   void openDetailsPage(BuildContext ctx, List lines, String title, List links) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
@@ -28,31 +28,27 @@ class _ChapterViewState extends State<ChapterView> {
     print("before");
     List chapters = poem['chapters'] as List;
     setState(() {
-      chapterNames = chapters.map((chapter){
+      chapterNames = chapters.map((chapter) {
         return GestureDetector(
-              onTap: () {
-                openDetailsPage(context, chapter["lines"], chapter["name"], chapter['links']);
-              },
-              child: ChapterCard(title: chapter["name"]));
-
+            onTap: () {
+              openDetailsPage(
+                  context, chapter["lines"], chapter["name"], chapter['links']);
+            },
+            child: ChapterCard(title: chapter["name"]));
       }).toList();
     });
     return Scaffold(
-        appBar: AppBar(
-          title: Text("الفصول"),
+      appBar: AppBar(
+        title: Text("الفصول"),
+      ),
+      body:  SingleChildScrollView(
+            child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: chapterNames,
+          ),
         ),
-        body: DecoratedBox(
-            position: DecorationPosition.background,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
-            ),
-            child: SingleChildScrollView(
-                child: Center(child:  Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: chapterNames,
-                ),)
-            )))
-      ;
+      ),
+    );
   }
 }

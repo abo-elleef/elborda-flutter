@@ -22067,13 +22067,7 @@ class MyAppState extends State<MyApp> {
           appBar: AppBar(
             title: Text('المدائح '),
           ),
-          body: DecoratedBox(
-            position: DecorationPosition.background,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
-            ),
-            child: SafeArea(
+          body: SafeArea(
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -22128,7 +22122,7 @@ class MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-          )),
+          ),
     );
   }
 }
