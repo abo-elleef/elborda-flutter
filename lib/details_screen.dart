@@ -68,22 +68,25 @@ class DetailsState extends State<Details> {
 
   List<Widget> generateBody(List<dynamic> lines) {
     List<Widget> body = [];
-    if (!this.ids.isEmpty){
-      if (this.type == 'you_tube'){
-        body.add(YoutubePlayer(controller: _controller));
-      }
-      if (this.type == 'sound_cloud'){
-        body.add(
-            Container(
-                height: 300,
-                child: WebView(
-                  initialUrl: Uri.dataFromString('<html><body> <iframe width="100%" height="100%" scrolling="no" frameborder="no" allow="autoplay" src="'+this.ids +'&color=%23547c7c&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></body></html>', mimeType: 'text/html').toString(),
-                  javascriptMode: JavascriptMode.unrestricted,
-                )
-            )
-        );
+    if (!Platform.isIOS){
+      if (!this.ids.isEmpty){
+        if (this.type == 'you_tube'){
+          body.add(YoutubePlayer(controller: _controller));
+        }
+        if (this.type == 'sound_cloud'){
+          body.add(
+              Container(
+                  height: 300,
+                  child: WebView(
+                    initialUrl: Uri.dataFromString('<html><body> <iframe width="100%" height="100%" scrolling="no" frameborder="no" allow="autoplay" src="'+this.ids +'&color=%23547c7c&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe></body></html>', mimeType: 'text/html').toString(),
+                    javascriptMode: JavascriptMode.unrestricted,
+                  )
+              )
+          );
+        }
       }
     }
+
     body.add(SizedBox(height: 15,));
     body.add(AdmobBanner(
       adUnitId:  Platform.isIOS ? "ca-app-pub-2772630944180636/8356626963" : "ca-app-pub-2772630944180636/3185523871",
