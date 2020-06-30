@@ -5,6 +5,7 @@ import 'dart:convert' as convert;
 
 class ChapterView extends StatefulWidget {
   var body;
+
   ChapterView(this.body);
 
   @override
@@ -13,30 +14,34 @@ class ChapterView extends StatefulWidget {
 
 class _ChapterViewState extends State<ChapterView> {
   _ChapterViewState(this.poem);
-  var poem;
-  List<Widget> chapterNames= [];
 
-  void openDetailsPage(BuildContext ctx, List lines, String title, List links) {
+  var poem;
+
+  void openDetailsPage(BuildContext ctx, int chapter_index) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      poem["name"] = title;
-      return Details(poem, lines, links);
+//      return Details(poem, lines, links);
+      return Details(poem['id'], chapter_index);
     }));
   }
 
+  List<Widget> buildChapters() {
+    List chapters = poem['chapters'] as List;
+    List<Widget> items = [];
+    chapters
+        .asMap()
+        .forEach((index, chapter) {
+      items.add(GestureDetector(
+          onTap: () {
+            openDetailsPage(context, index);
+          },
+          child: ChapterCard(title: chapter["name"])));
+    });
+    return items;
+    }
+
+
   @override
   Widget build(BuildContext context) {
-    print("before");
-    List chapters = poem['chapters'] as List;
-    setState(() {
-      chapterNames = chapters.map((chapter){
-        return GestureDetector(
-              onTap: () {
-                openDetailsPage(context, chapter["lines"], chapter["name"], chapter['links']);
-              },
-              child: ChapterCard(title: chapter["name"]));
-
-      }).toList();
-    });
     return Scaffold(
         appBar: AppBar(
           title: Text("الفصول"),
@@ -48,11 +53,11 @@ class _ChapterViewState extends State<ChapterView> {
                   image: AssetImage('assets/bg.png'), fit: BoxFit.cover),
             ),
             child: SingleChildScrollView(
-                child: Center(child:  Column(
+                child: Center(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: chapterNames,
+                  children: buildChapters(),
                 ),)
             )))
-      ;
+    ;
   }
 }
