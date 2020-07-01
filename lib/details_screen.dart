@@ -36,6 +36,8 @@ class DetailsState extends State<Details> {
   String ids = '';
   String type = "";
   bool chapterView;
+  bool interstitialOpened = false;
+  AdmobInterstitial interstitialAd;
   DetailsState(this.id, this.chapter_index, this.pageTitle);
    List<dynamic> lines = [];
   List<dynamic> links = [];
@@ -82,8 +84,25 @@ class DetailsState extends State<Details> {
       }
     });
   }
+  void showInterstitial(){
+    interstitialAd = AdmobInterstitial(
+      adUnitId: Platform.isIOS ? "ca-app-pub-2772630944180636/5441116171" : "ca-app-pub-2772630944180636/6218561984",
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        print("event name");
+        print(event);
+        if (!interstitialOpened){
+          if (event == AdmobAdEvent.loaded){
+            interstitialAd.show();
+            this.interstitialOpened = true;
+          }
+        }
+      },
+    );
+    interstitialAd.load();
+  }
 
   void openNext(BuildContext ctx, int chapter_index, String id){
+    showInterstitial();
     Navigator.of(ctx).pop();
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return Details(id, chapter_index+1);
@@ -91,6 +110,7 @@ class DetailsState extends State<Details> {
 
   }
   void openPrevious(BuildContext ctx, int chapter_index, String id){
+    showInterstitial();
     Navigator.of(ctx).pop();
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return Details(id, chapter_index-1);
